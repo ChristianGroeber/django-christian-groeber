@@ -1,1 +1,12 @@
 {% extends 'base.html' %}
+
+{% block content %}
+<h2>Portfolio</h2>
+<div class="row">
+    {% for type in types %}
+<div class="col-sm-3 portfolio-type">
+    <h4>{{ type.title }}</h4>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}

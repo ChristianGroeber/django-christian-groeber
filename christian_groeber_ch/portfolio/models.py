@@ -18,7 +18,7 @@ class Element(models.Model):
 class Type(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
-    elements = models.ManyToManyField(Element)
+    elements = models.ManyToManyField(Element, blank=True)
 
     def __str__(self):
         return self.title
