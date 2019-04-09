@@ -22,3 +22,12 @@ class Type(models.Model):
 
     def __str__(self):
         return self.title
+
+    def generate_url(self):
+        arr = str(self.title).split(' ')
+        tmp = ''
+        for i in range(len(arr)):
+            if i is not 0:
+                tmp += '-'
+            tmp += arr[i]
+        self.type_url = tmp
