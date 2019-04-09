@@ -1,1 +1,275 @@
 {% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="gradient">
+        <script>
+            $(document).ready(function () {
+                var winHeight = $(window).height();
+                var winWidth = $(window).width();
+                console.log(winHeight);
+                $(".post").css("height", winHeight + "px");
+                $(".post").css("background-size", $(window).width() + "px auto");
+                $("h1").css("padding-top", $(window).height() / 2 + "px");
+                $("h1").css("padding-bottom", $(window).height() / 2 + "px");
+                $(".post-box").css("width", winWidth * 0.8 + "px");
+                $(".post-empty-box").css("width", winWidth * 1 + "px");
+                $(".post-box").css("background-size", $(window).height() + "px auto");
+
+                $(".button").click(function () {
+                    var go;
+                    if ($(this).hasClass("about-me")) {
+                        document.location.href = "/Home/About";
+                    } else if ($(this).hasClass("photography")) {
+                        document.location.href = "/Home/Photography";
+                    } else if ($(this).hasClass("projects")) {
+                        document.location.href = "/Home/Projects";
+                    } else if ($(this).hasClass("contact")) {
+                        document.location.href = "/Home/Contact";
+                    } else if ($(this).hasClass("other")) {
+                        document.location.href = "/Home/Other";
+                    } else {
+                        alert("404 Page doesn't exist");
+                    }
+                });
+            });
+        </script>
+
+        <style>
+            .jumbotron {
+                background-image: url('{% static 'img/index/DSCF5260_Lredit.jpg' %}');
+            }
+
+            .post.about-this-page {
+                background-image: url('{% static 'img/index/DSCF5259_Lredit.jpg' %}');
+            }
+
+            .post.about-me {
+                background-image: url('{% static 'img/index/DSCF5408_Lredit.jpg' %}');
+            }
+
+            .post.photography {
+                background-image: url('{% static 'img/index/bar.jpg' %}');
+            }
+
+            .post.projects {
+                background-image: url('{% static 'img/index/fence.jpg' %}');
+            }
+
+            .post.contact {
+                background-image: url('{% static 'img/index/guy-walking.jpg' %}');
+            }
+
+            .post.other {
+                background-image: url('{% static 'img/index/building.jpg' %}');
+            }
+
+            .post-text {
+                padding-top: 80px;
+            }
+
+            .padded-post{
+                padding-top:100px;
+            }
+
+                .post-text.about-this-page {
+                    max-width: 500px;
+                }
+
+                .post-title.about-me{
+                    text-align:right;
+                }
+
+                .post-title.contact{
+                    text-align:right;
+                }
+
+                .post-text.about-me {
+                    float:right;
+                    max-width: 400px;
+                    text-align: right;
+                }
+
+                .post-text.photography{
+                    max-width: 350px;
+                }
+
+                .post-text.projects{
+                    max-width: 350px;
+                }
+
+                .post-text.contact{
+                    float:right;
+                    text-align:right;
+                    max-width: 350px;
+                }
+
+                .post-text.other{
+                    max-width:300px;
+                }
+
+            .post-box {
+                background-repeat: no-repeat;
+            }
+
+                .post-box.about-this-page {
+                    background-image: url('{% static 'img/index/back1.png' %}');
+                }
+
+                .post-box.about-me {
+                    background-image: url('{% static 'img/index/back2.png' %}');
+                    background-position: right;
+                    display: block;
+                    float: right;
+                }
+
+                .post-box.photography {
+                    background-image: url('{% static 'img/index/back3.png' %}');
+                }
+
+                .post-box.projects {
+                    background-image: url('{% static 'img/index/back4.png' %}');
+                }
+
+                .post-box.contact {
+                    background-image: url('{% static 'img/index/back5.png' %}');
+                    background-position:right;
+                    display:block;
+                    float:right;
+                }
+
+                .post-box.other {
+                    background-image: url('{% static 'img/index/back6.png' %}');
+                }
+
+            .button {
+                box-shadow: 2px 2px 3px rgba(0,0,0, 0.5);
+                border-radius: 10px;
+                text-align: center;
+                height: 50px;
+                max-width: 100px !important;
+                margin-top: 50px;
+                color: black;
+            }
+
+            .button.about-me {
+                background-color: rgba(122,201,67, 0.8);
+                margin-left: 300px;
+            }
+
+                .button.photography {
+                    background-color: rgba(63,169,245, 0.8);
+                    max-width:200px !important;
+                }
+
+                .button.projects {
+                    background-color: rgba(244,109,17,0.8);
+                }
+
+                .button.contact {
+                    background-color: rgba(20,242,205,0.8);
+                    margin-left:250px !important;
+                }
+
+                .button.other {
+                    background-color: rgba(206,237,24, 0.8)
+                }
+
+            p.button-text{
+                padding-top:10px;
+                text-shadow:1px 1px 2px rgba(0,0,0,0.5);
+            }
+
+            .button:hover{
+                cursor:pointer;
+                color:black;
+                text-decoration:none;
+            }
+        </style>
+        <h1>Welcome to my homepage</h1>
+    </div>
+</div>
+
+<div class="main">
+    <div class="post about-this-page">
+        <div class="post-box about-this-page">
+            <div class="padded-post">
+                <h2 class="post-title">About this page</h2>
+                <div class="post-text about-this-page">
+                    On here I will show you who I am and what I love doing. <br /><br />
+                    <p style="font-size: smaller">Keep scrolling to see a short summary of what you fill find here or go directly to one of the sub pages via the navigation</p>
+                </div>
+            </div>
+        </div>
+        <div class="post-empty-box"></div>
+    </div>
+
+    <div class="post about-me">
+        <div class="post-empty-box"></div>
+        <div class="post-box about-me">
+            <div class="padded-post">
+                <h2 class="post-title about-me">About Me</h2>
+                <div class="post-text about-me">
+                    I am a 20 year old IT school in Aarau and Baden, Switzerland.<br />
+                    In my free time I love taking pictures and editing them and creating websites.<br /><br />
+
+                    If you would like to know more check out the “About me” page.<br /><br />
+                    <div class="button about-me"><p class="button-text about-me">About me</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post photography">
+        <div class="post-box photography">
+            <div class="padded-post">
+                <h2 class="post-title photography">Photography</h2>
+                <div class="post-text photography">
+                    Since about 5 years I have been taking pictures, some good and some bad.<br /><br />
+                    Click on this Button to see some of my work.
+                    <div class="button photography"><p class="button-text photography">Photography</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post projects">
+        <div class="post-box projects">
+            <div class="padded-post">
+                <h2 class="post-title projects">Projects</h2>
+                <div class="post-text projects">
+                    I got my first computer at the age of 12 and I started programming shortly after for LEGO Mindstorms. Ever since I was hooked.<br /><br />
+                    On this site I will show you what projects I am currently working on and what I have already finished.
+                    <div class="button projects"><p class="button-text projects">Projects</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post contact">
+        <div class="post-box contact">
+            <div class="padded-post">
+                <h2 class="post-title contact">Contact</h2>
+                <div class="post-text contact">
+                    Since I am what they call a “Millennial” there are numerous ways to contact me.
+                    <div class="button contact"><p class="button-text contact">Contact</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post other">
+        <div class="post-box other">
+            <div class="padded-post">
+                <h2 class="post-title other">Other</h2>
+                <div class="post-text other">
+                    I also do some other stuff so click here to read about that.
+                    <div class="button other"><p class="button-text other">Other</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
