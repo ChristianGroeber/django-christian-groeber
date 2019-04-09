@@ -1,0 +1,68 @@
+{% load static %}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Gröber</title>
+    <link href="{% static 'css/Site.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var navheight = $(".nav").height();
+            $(window).scroll(function (event) {
+                var screenheight = parseInt($(document).height());
+                var st = $(this).scrollTop();
+                if (st >= navheight) {
+                    $(".navbar").css("background-color", "rgba(0,0,0,0.75)");
+                } else if (st <= navheight) {
+                    $(".navbar").css("background-color", "rgba(0,0,0,1)");
+                }
+            });
+
+            var screenheight = $(window).height();
+            $(".jumbotron").css("height", screenheight - navheight);
+            $(".gradient").css("height", screenheight - navheight);
+            $(".jumbotron").css("background-size", $(window).width() + "px auto");
+        });
+    </script>
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+          <img src="http://placehold.it/150x50?text=Logo" alt="">
+        </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <div class="container body-content">
+        {% block content %}{% endblock %}
+        <hr />
+        <footer>
+            <p>&copy; Christian Gröber</p>
+        </footer>
+    </div>
+</body>
+</html>
