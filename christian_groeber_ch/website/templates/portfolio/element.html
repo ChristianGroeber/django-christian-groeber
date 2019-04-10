@@ -5,12 +5,21 @@
 
 {% block content %}
 <h2>{{ element.title }}</h2>
-    <h4>{{ element.description }}</h4>
-
+<h4>{{ element.description }}</h4>
+{{ element.text|safe }}
 {% for elem in content %}
-<h5>{{ elem.title }}</h5>
-<p class="timeline-date">{{ elem.date }}</p>
-{{ elem.text|safe }}
-<hr>
+<div class="row">
+    <div class="col-sm-8">
+        <h5>{{ elem.title }}</h5>
+        <p class="timeline-date">{{ elem.date }}</p>
+        {{ elem.text|safe }}
+    </div>
+    {% if elem.image %}
+    <div class="col-sm-4">
+        <img src="{{ elem.image.url }}">
+    </div>
+    {% endif %}
+</div>
+    <hr>
 {% endfor %}
 {% endblock %}
