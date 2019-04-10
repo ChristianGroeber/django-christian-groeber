@@ -2,6 +2,10 @@
     -webkit-transition: box-shadow 0.5s ease;
 }
 
+.content{
+    margin: 1rem;
+}
+
 .portfolio-type{
     border-radius: 1rem;
     padding: 10px;

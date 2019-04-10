@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import get_object_or_404
 from froala_editor.fields import FroalaField
 
 # Create your models here.
@@ -31,3 +32,14 @@ class Type(models.Model):
                 tmp += '-'
             tmp += arr[i]
         self.type_url = tmp
+
+    def get_from_url(str):
+        arr_type = str.split('-')
+        str_type = ''
+        for i in range(len(arr_type)):
+            if i is not 0:
+                str_type += ' '
+            str_type += arr_type[i]
+        type = get_object_or_404(Type, title=str_type)
+        return type
+

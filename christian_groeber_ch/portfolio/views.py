@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from .models import Type
@@ -12,4 +12,8 @@ def portfolio(request):
 
 
 def spec_portfolio(request, portfolio_type):
-    return render(request, 'portfolio/portfolio_type.html', {'portfolio_type':portfolio_type})
+    if '-' not in portfolio_type:
+        type = get_object_or_404(Type, title=portfolio_type)
+    else:
+        type = Type.get_from_url(portfolio_type)
+    return render(request, 'portfolio/portfolio_type.html', {'portfolio_type': type})
