@@ -9,7 +9,7 @@ class TimelineElement(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
     image = models.ImageField(upload_to='timeline_element', blank=True)
-    text = FroalaField()
+    text = FroalaField(blank=True)
 
     def __str__(self):
         return self.title
