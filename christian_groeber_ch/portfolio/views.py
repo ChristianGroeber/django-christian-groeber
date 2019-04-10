@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
-from .models import Type, Element
+from .models import Type, Element, TimelineElement
 
 
 def portfolio(request):
@@ -28,6 +28,7 @@ def spec_portfolio(request, portfolio_type):
 
 
 def element(request, portfolio_type, element):
-    type = decode_url(Type, portfolio_type)
+    p_type = decode_url(Type, portfolio_type)
     elem = decode_url(Element, element)
-    return render(request, 'portfolio/element.html', {'element': elem})
+    content = elem.timeline_elements.all().order_by('-date')
+    return render(request, 'portfolio/element.html', {'element': elem, 'type': p_type, 'content': content})
