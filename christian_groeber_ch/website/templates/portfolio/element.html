@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{% block title %}{{ element.title }} by Christian Gröber{% endblock %}
+{% block description %}{{ element.description }}{% endblock %}
+
 {% block content %}
 <h2>{{ element.title }}</h2>
 {% endblock %}

@@ -10,6 +10,7 @@ class TimelineElement(models.Model):
     description = models.CharField(max_length=500, blank=True)
     image = models.ImageField(upload_to='timeline_element', blank=True)
     text = FroalaField(blank=True)
+    date_of_completion = models.DateTimeField(blank=True)
 
     def __str__(self):
         return self.title
