@@ -12,5 +12,4 @@ def portfolio(request):
 
 
 def spec_portfolio(request, portfolio_type):
-    print(portfolio_type)
-    return redirect('index')
+    return render(request, 'portfolio/portfolio_type.html', {'portfolio_type':portfolio_type})
