@@ -29,7 +29,7 @@ def spec_portfolio(request, portfolio_type):
 
 def element(request, portfolio_type, element):
     p_type = decode_url(Type, portfolio_type)
+    print('hello', p_type)
     elem = decode_url(Element, element)
     content = elem.timeline_elements.all().order_by('-date')
-    print(content)
     return render(request, 'portfolio/element.html', {'element': elem, 'type': p_type, 'content': content})
