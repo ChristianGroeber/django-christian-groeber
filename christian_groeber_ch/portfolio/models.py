@@ -5,12 +5,24 @@ from froala_editor.fields import FroalaField
 # Create your models here.
 
 
+class TimelineElement(models.Model):
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=500, blank=True)
+    image = models.ImageField(upload_to='timeline_element', blank=True)
+    text = FroalaField()
+
+    def __str__(self):
+        return self.title
+
+
 class Element(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
     image = models.ImageField(upload_to='portfolio_elements', blank=True)
     text = FroalaField(blank=True)
     files = models.FileField(blank=True)
+    subscriptable = models.BooleanField(default=False)
+    timeline_elements = models.ManyToManyField(TimelineElement, blank=True)
 
     def generate_url(self):
         arr = str(self.title).split(' ')
