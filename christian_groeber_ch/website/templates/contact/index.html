@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Christian Gröber - Contact{% endblock %}
+{% block description %}Christian Gröber - Contact{% endblock %}
+
+{% block content %}
+<h2>Contact</h2>
+{% for type in types %}
+<div class="row">
+    <div class="col-sm-8">
+<h4>{{ type.title }}</h4>
+<a href="{{ type.link }}" target="_blank">{{ type.link }}</a>
+</div>
+{% if type.icon %}
+    <div class="col-sm-4">
+        <img src="{{ type.icon.url }}">
+    </div>
+    {% endif %}
+</div>
+    {% endfor %}
+{% endblock %}
