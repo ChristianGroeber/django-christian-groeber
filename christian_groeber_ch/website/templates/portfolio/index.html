@@ -14,7 +14,7 @@
 <h2>Portfolio</h2>
 <div class="row content">
     {% for type in types %}
-    <div class="col-sm-3 portfolio-type {{ type.type_url }}">
+    <div class="col-sm-3 portfolio-type {{ type.type_url }} clickable">
         <h4>{{ type.title }}</h4>
         <p>{{ type.description }}</p>
     </div>

@@ -21,9 +21,9 @@ from django.urls import path, include
 from . import settings
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', include('website.urls')),
     url('portfolio/', include('portfolio.urls')),
-    path('admin/', admin.site.urls),
     url(r'^froala_editor/', include('froala_editor.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

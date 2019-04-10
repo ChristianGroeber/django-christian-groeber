@@ -1,8 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<script>
+    $(document).ready(function(){
+        $('.clickable').click(function(){
+            var full_class = $(this).attr('class');
+            full_class = full_class.split(' ')[2];
+            console.log(full_class);
+            window.location.href = full_class;
+        })
+    })
+    </script>
 <div class="content col-sm-12">
 <h2>{{ portfolio_type.title }}</h2>
 <p>{{ portfolio_type.description }}</p>
+    <div class="row">
+    {% for element in elements %}
+        <div class="col-sm-3 clickable {{ element.url }}">
+    <h4>{{ element.title }}</h4>
+            <p>{{ element.description }}</p>
+        </div>
+    {% endfor %}
+
+    </div>
 </div>
     {% endblock %}

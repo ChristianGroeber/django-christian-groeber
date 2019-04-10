@@ -12,6 +12,25 @@ class Element(models.Model):
     text = FroalaField(blank=True)
     files = models.FileField(blank=True)
 
+    def generate_url(self):
+        arr = str(self.title).split(' ')
+        tmp = ''
+        for i in range(len(arr)):
+            if i is not 0:
+                tmp += '-'
+            tmp += arr[i]
+        self.url = tmp
+
+    def get_from_url(str):
+        arr_type = str.split('-')
+        str_type = ''
+        for i in range(len(arr_type)):
+            if i is not 0:
+                str_type += ' '
+            str_type += arr_type[i]
+        type = get_object_or_404(Element, title=str_type)
+        return type
+
     def __str__(self):
         return self.title
 
