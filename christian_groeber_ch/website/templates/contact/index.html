@@ -20,6 +20,9 @@
 <div class="row clickable {{ type.title }}">
     <div class="col-sm-8">
         <h4>{{ type.title }}</h4>
+        {% if type.description %}
+        <p>{{ type.description }}</p>
+        {% endif %}
         <a href="{{ type.link }}" target="_blank">{{ type.link }}</a>
     </div>
     {% if type.icon %}
