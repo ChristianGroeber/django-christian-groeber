@@ -56,7 +56,24 @@
 </div>
         <hr />
         <footer>
-            <p>&copy; Christian Gröber</p>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>&copy; Christian Gröber</p>
+                </div>
+                <div class="social-media col-sm-4">
+                    <div class="row">
+                    {% for media in social_media %}
+                    <a href="{{ media.link }}" target="_blank" class="col-sm-2" title="{{ media.title }}">
+                        {% if media.icon %}
+                        <img src="{{ media.icon.url }}" height='50'>
+                        {% else %}
+                        {{ media.title }}
+                        {% endif %}
+                    </a>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 </body>
