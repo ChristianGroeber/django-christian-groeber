@@ -4,18 +4,29 @@
 {% block description %}Christian Gröber - Contact{% endblock %}
 
 {% block content %}
+<script>
+    $(document).ready(function(){
+        $('.clickable').click(function(){
+            {% for url in types %}
+            if ($(this).attr('class').split(' ')[2] === '{{ url.title }}'){
+                window.open('{{ url.link }}', '_blank');
+            }
+            {% endfor %}
+        })
+    })
+</script>
 <h2>Contact</h2>
 {% for type in types %}
-<div class="row">
+<div class="row clickable {{ type.title }}">
     <div class="col-sm-8">
-<h4>{{ type.title }}</h4>
-<a href="{{ type.link }}" target="_blank">{{ type.link }}</a>
-</div>
-{% if type.icon %}
+        <h4>{{ type.title }}</h4>
+        <a href="{{ type.link }}" target="_blank">{{ type.link }}</a>
+    </div>
+    {% if type.icon %}
     <div class="col-sm-4">
         <img src="{{ type.icon.url }}">
     </div>
     {% endif %}
 </div>
-    {% endfor %}
+{% endfor %}
 {% endblock %}
