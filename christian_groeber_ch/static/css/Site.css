@@ -2,6 +2,10 @@
     -webkit-transition: box-shadow 0.5s ease;
 }
 
+a{
+    -webkit-transition: color 0.2s ease;
+}
+
 .content{
     margin: 1rem;
 }
@@ -18,16 +22,25 @@
 }
 
 h1{
-    font-family: PlayfairDisplay-Bold !important;
     font-size: 45px !important;
     color:white !important;
     text-shadow:5px 5px 5px black !important;
 }
 
+h2.page-title{
+    font-size: 40px;
+}
+
+@media (max-width: 790px){
+    .media-icon{
+        margin-right: 200px;;
+    }
+}
+
 body {
     /**padding-top: 50px;*/
     overflow-x: hidden;
-    font-family: PlayfairDisplay-Regular;
+    font-family: 'PlayfairDisplay' serif;
 }
 
 main{
@@ -75,7 +88,6 @@ footer{
 }
 
 .post{
-    font-family:PlayfairDisplay-Regular;
     font-size: 20px;
     color: white;
     background-repeat:no-repeat;
@@ -161,3 +173,5 @@ select,
 textarea {
     max-width: 280px;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700');

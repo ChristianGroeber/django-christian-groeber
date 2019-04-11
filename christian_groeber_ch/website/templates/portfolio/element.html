@@ -5,7 +5,7 @@
 
 {% block content %}
 <a href="../">Back to overview</a>
-<h2>{{ element.title }}</h2>
+<h2 class="page-title">{{ element.title }}</h2>
 <h4>{{ element.description }}</h4>
 {{ element.text|safe }}
 {% for elem in content %}
