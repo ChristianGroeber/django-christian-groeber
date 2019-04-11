@@ -35,7 +35,6 @@ main{
 }
 
 footer{
-    background-color:black;
     color:white;
     padding: 2rem;
 }
@@ -48,12 +47,11 @@ footer{
     margin-left: 2rem;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     border-radius: 0.5rem;
-    /*line-height: 0.1px !important;*/
+    margin-bottom: 40px;
 }
 
 .site-content > h2{
     padding-bottom: 5px;
-    
 }
 
 .profile-image{
@@ -162,28 +160,4 @@ input,
 select,
 textarea {
     max-width: 280px;
-}
-@font-face {
-    font-family: 'PlayfairDisplay-Black';
-    src: url('../fonts/PlayfairDisplay-Black.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'PlayfairDisplay-BlackItalic';
-    src: url('../fonts/PlayfairDisplay-BlackItalic.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'PlayfairDisplay-Bold';
-    src: url('../fonts/PlayfairDisplay-Bold.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'PlayfairDisplay-BoldItalic';
-    src: url('../fonts/PlayfairDisplay-BoldItalic.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'PlayfairDisplay-Italic';
-    src: url('../fonts/PlayfairDisplay-Italic.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'PlayfairDisplay-Regular';
-    src: url('../fonts/PlayfairDisplay-Regular.ttf') format('truetype');
 }

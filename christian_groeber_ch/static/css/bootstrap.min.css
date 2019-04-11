@@ -47,7 +47,6 @@ html {
     -ms-text-size-adjust: 100%;
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: transparent
-    color: dark !important;
 }
 
 @-ms-viewport {
@@ -6048,7 +6047,7 @@ a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:hover
 }
 
 .bg-dark {
-    background-color: #343a40 !important
+    background-color: #212326 !important
 }
 
 a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
