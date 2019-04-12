@@ -7,7 +7,7 @@ from django.db.models import CharField, Model
 class ContactElement(Model):
     title = CharField(max_length=50)
     description = CharField(max_length=500, blank=True)
-    link = models.URLField()
+    link = models.CharField(max_length=128)
     icon = models.ImageField(upload_to='contact_icon', blank=True)
     is_social_media = models.BooleanField(default=False)
 
