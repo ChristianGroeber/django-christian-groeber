@@ -24,15 +24,15 @@
                 $(".button").click(function () {
                     var go;
                     if ($(this).hasClass("about-me")) {
-                        document.location.href = "/Home/About";
+                        document.location.href = "#";
                     } else if ($(this).hasClass("photography")) {
                         document.location.href = "portfolio/Photography/";
                     } else if ($(this).hasClass("projects")) {
-                        document.location.href = "portfolio/programming/";
+                        document.location.href = "portfolio/Programming/";
                     } else if ($(this).hasClass("contact")) {
-                        document.location.href = "/Home/Contact";
+                        document.location.href = "contact/";
                     } else if ($(this).hasClass("other")) {
-                        document.location.href = "/Home/Other";
+                        document.location.href = "#";
                     } else {
                         alert("404 Page doesn't exist");
                     }
