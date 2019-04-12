@@ -91,6 +91,7 @@ footer{
     font-size: 20px;
     color: white;
     background-repeat:no-repeat;
+    background-size: contain;
 }
 
 .padded-post{

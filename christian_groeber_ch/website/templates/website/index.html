@@ -12,7 +12,7 @@
             $(document).ready(function () {
                 var winHeight = $(window).height();
                 var winWidth = $(window).width();
-                console.log(winHeight);
+                console.log(winWidth);
                 $(".post").css("height", winHeight + "px");
                 $(".post").css("background-size", $(window).width() + "px auto");
                 $("h1").css("padding-top", $(window).height() / 2 + "px");
@@ -40,17 +40,18 @@
             });
         </script>
 
+        <h1>Welcome to my homepage</h1>
         <style>
             .jumbotron {
-                background-image: url('{% static 'img/index/DSCF5260_Lredit.jpg' %}');
+                background-image: url('{% static 'img/index/graffiti.jpg' %}');
             }
 
             .post.about-this-page {
-                background-image: url('{% static 'img/index/DSCF5259_Lredit.jpg' %}');
+                background-image: url('{% static 'img/index/old-guy.jpg' %}');
             }
 
             .post.about-me {
-                background-image: url('{% static 'img/index/DSCF5408_Lredit.jpg' %}');
+                background-image: url('{% static 'img/index/old-building.jpg' %}');
             }
 
             .post.photography {
@@ -67,6 +68,36 @@
 
             .post.other {
                 background-image: url('{% static 'img/index/building.jpg' %}');
+            }
+
+            @media (max-width: 550px){
+                .jumbotron{
+                    background-image: url('{% static 'img/index/graffiti-mob.jpg' %}');
+                }
+
+                .post.about-this-page {
+                    background-image: url('{% static 'img/index/old-guy-mob.jpg' %}');
+                }
+
+                .post.about-me {
+                    background-image: url('{% static 'img/index/old-building-mob.jpg' %}');
+                }
+
+                .post.photography {
+                    background-image: url('{% static 'img/index/bar-mob.jpg' %}');
+                }
+
+                .post.projects {
+                    background-image: url('{% static 'img/index/fence-mob.jpg' %}');
+                }
+
+                .post.contact {
+                    background-image: url('{% static 'img/index/guy-walking-mob.jpg' %}');
+                }
+
+                .post.other {
+                    background-image: url('{% static 'img/index/building-mob.jpg' %}');
+                }
             }
 
             .post-text {
@@ -199,7 +230,6 @@
                 padding: 0 !important;
             }
         </style>
-        <h1>Welcome to my homepage</h1>
     </div>
 </div>
 
