@@ -4,6 +4,9 @@
 
 a{
     -webkit-transition: color 0.2s ease;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    word-wrap: break-word;
 }
 
 .content{
