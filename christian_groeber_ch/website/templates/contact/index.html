@@ -19,11 +19,10 @@
 {% for type in types %}
 <div class="row clickable {{ type.title }}">
     <div class="col-sm-8">
-        <h4>{{ type.title }}</h4>
+        <a href="{{ type.link }}" target="_blank"><h4>{{ type.title }}</h4></a>
         {% if type.description %}
         <p>{{ type.description }}</p>
         {% endif %}
-        <a href="{{ type.link }}" target="_blank"><p>{{ type.link }}</p></a>
     </div>
     {% if type.icon %}
     <div class="col-sm-1 media-icon">
