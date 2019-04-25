@@ -1,8 +1,7 @@
 from django.db import models
 from django.shortcuts import get_object_or_404
 from froala_editor.fields import FroalaField
-
-
+from colorfield.fields import ColorField
 # Create your models here.
 
 
@@ -17,6 +16,15 @@ class TimelineElement(models.Model):
         return self.title
 
 
+class Technology(models.Model):
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=500, blank=True)
+    color = ColorField(default='#FF0000')
+
+    def __str__(self):
+        return self.title
+
+
 class Element(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
@@ -25,6 +33,7 @@ class Element(models.Model):
     files = models.FileField(blank=True)
     subscriptable = models.BooleanField(default=False)
     timeline_elements = models.ManyToManyField(TimelineElement, blank=True)
+    technologies = models.ManyToManyField(Technology)
 
     def generate_url(self):
         arr = str(self.title).split(' ')
