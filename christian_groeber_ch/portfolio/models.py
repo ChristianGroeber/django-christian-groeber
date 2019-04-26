@@ -20,9 +20,25 @@ class Technology(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
     color = ColorField(default='#FF0000')
+    background_color = models.CharField(max_length=10, default='rgba(0,0,0,0.5)')
 
     def __str__(self):
         return self.title
+
+    def get_rgb(self):
+        h = str(self.color).lstrip('#')
+        h_arr = list(h)
+        r = h_arr[0]
+        r += h_arr[1]
+        g = h_arr[2]
+        g += h_arr[3]
+        b = h_arr[4]
+        b += h_arr[5]
+        ret = 'rgba(' + str(int(r, 16)) + ', ' + str(int(g, 16)) + ', ' + str(int(b, 16)) + ', 0.5)'
+        self.background_color = ret
+        print(self.background_color)
+        self.save()
+        return ret
 
 
 class Element(models.Model):

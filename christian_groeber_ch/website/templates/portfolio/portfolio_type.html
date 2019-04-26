@@ -23,6 +23,13 @@
         <div class="col-sm-3 clickable {{ element.url }}">
     <h4>{{ element.title }}</h4>
             <p>{{ element.description }}</p>
+            <div class="row">
+            {% for technology in element.technologies.all %}
+            <div class="col-sm-2 technology" style="color:{{ technology.background_color }};">
+                {{ technology }}
+            </div>
+            {% endfor %}
+        </div>
         </div>
     {% endfor %}
 

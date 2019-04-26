@@ -24,6 +24,8 @@ def spec_portfolio(request, portfolio_type):
     elements = type.elements.all()
     for element in elements:
         element.generate_url()
+        for technology in element.technologies.all():
+            technology.get_rgb()
     return render(request, 'portfolio/portfolio_type.html', {'portfolio_type': type, 'elements': elements})
 
 
