@@ -20,7 +20,7 @@ class Technology(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
     color = ColorField(default='#FF0000')
-    background_color = models.CharField(max_length=10, default='rgba(0,0,0,0.5)')
+    background_color = models.CharField(max_length=20, default='rgba(0,0,0,0.5)')
 
     def __str__(self):
         return self.title
