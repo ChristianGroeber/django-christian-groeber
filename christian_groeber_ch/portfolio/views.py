@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
-from .models import Type, Element, TimelineElement
+from .models import Type, Element, TimelineElement, Technology
 
 
 def portfolio(request):
     types = Type.objects.all()
+    technologies = Technology.objects.all()
+    for technology in technologies:
+        technology.get_rgb()
     for type in types:
         type.generate_url()
-    return render(request, 'portfolio/index.html', {'types': types})
+    return render(request, 'portfolio/index.html', {'types': types, 'technologies': technologies})
 
 
 def decode_url(cls: object, str: object) -> object:
