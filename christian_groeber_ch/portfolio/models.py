@@ -34,7 +34,7 @@ class Technology(models.Model):
         g += h_arr[3]
         b = h_arr[4]
         b += h_arr[5]
-        ret = 'rgba(' + str(int(r, 16)) + ', ' + str(int(g, 16)) + ', ' + str(int(b, 16)) + ', 0.5)'
+        ret = 'rgba(' + str(int(r, 16)) + ', ' + str(int(g, 16)) + ', ' + str(int(b, 16)) + ', 0.2)'
         self.background_color = ret
         print(self.background_color)
         self.save()
