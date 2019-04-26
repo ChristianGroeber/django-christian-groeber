@@ -1,1 +1,13 @@
 christian_groeber_ch/static_cdn/*
+venv/*
+christian_groeber_ch/christian_groeber_ch/__pycache__/*
+christian_groeber_ch/contact/__pycache__/*
+christian_groeber_ch/contact/migrations/*
+christian_groeber_ch/portfolio/__pycache__/*
+christian_groeber_ch/portfolio/migrations/*
+christian_groeber_ch/website/__pycache__/*
+christian_groeber_ch/website/migrations/*
+christian_groeber_ch/media_cdn/*
+about-me-test/*
+*.sqlite3
+.idea/*
