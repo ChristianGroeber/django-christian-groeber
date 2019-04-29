@@ -6,6 +6,13 @@
 {% block content %}
 <a href="../">Back to overview</a>
 <h2 class="page-title">{{ element.title }}</h2>
+<div class="row">
+    {% for technology in element.technologies.all %}
+    <a href="../../technology/{{ technology.title }}" class="col-sm-2 technology {{ technology.title }}" style="color:{{ technology.color }}; border: 2px solid {{ technology.background_color }}; background-color: {{ technology.background_color }};">
+    {{ technology }}
+        </a>
+    {% endfor %}
+</div>
 <h4>{{ element.description }}</h4>
 {{ element.text|safe }}
 {% for elem in content %}
