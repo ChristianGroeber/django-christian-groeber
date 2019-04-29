@@ -1,10 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %}Christian Gröber - {{ portfolio_type.title }}{% endblock %}
+{% block title %}Christian Gröber - {{ technology.title }}{% endblock %}
 {% block description %}{{ technology.title }} by Christian Gröber{% endblock %}
 
 {% block content %}
-<div class="technology">
-
+<div class="technology-view">
+    <div class="row">
+    {% if not technology.logo %}
+    <h2 class="col-sm-8">{{ technology }}</h2>
+    {% else %}
+    <img src="{{ technology.logo.url }}">
+    {% endif %}
+        </div>
+    <div class="row">
+        <h4>{{ technology.description }}</h4>
+    </div>
+    <div class="row">
+        {% for element in elements %}
+        {{ element }}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

@@ -41,4 +41,10 @@ def element(request, portfolio_type, element):
 
 def technology(request, technology):
     technology = Technology.objects.get(title=technology)
-    return render(request, 'portfolio/technology.html', {'technology': technology})
+    all_elements = Element.objects.all()
+    elements = []
+    for element in all_elements:
+        if technology in element.technologies.all():
+            elements.append(element)
+    print(elements)
+    return render(request, 'portfolio/technology.html', {'technology': technology, 'elements': elements})
