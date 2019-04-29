@@ -37,3 +37,8 @@ def element(request, portfolio_type, element):
     elem = decode_url(Element, element)
     content = elem.timeline_elements.all().order_by('-date')
     return render(request, 'portfolio/element.html', {'element': elem, 'type': p_type, 'content': content})
+
+
+def technology(request, technology):
+    technology = Technology.objects.get(title=technology)
+    return render(request, 'portfolio/technology.html', {'technology': technology})
