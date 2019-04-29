@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import ForeignKey
 from django.shortcuts import get_object_or_404
 from froala_editor.fields import FroalaField
 from colorfield.fields import ColorField
@@ -51,6 +52,7 @@ class Element(models.Model):
     subscriptable = models.BooleanField(default=False)
     timeline_elements = models.ManyToManyField(TimelineElement, blank=True)
     technologies = models.ManyToManyField(Technology)
+    portfolio_type = models.CharField(max_length=50, blank=True)
 
     def generate_url(self):
         arr = str(self.title).split(' ')
