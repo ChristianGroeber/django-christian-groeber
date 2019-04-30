@@ -53,6 +53,8 @@ class Element(models.Model):
     timeline_elements = models.ManyToManyField(TimelineElement, blank=True)
     technologies = models.ManyToManyField(Technology)
     portfolio_type = models.CharField(max_length=50, blank=True)
+    date_started = models.DateField()
+    date_finished = models.DateField(null=True, blank=True)
 
     def generate_url(self):
         arr = str(self.title).split(' ')
