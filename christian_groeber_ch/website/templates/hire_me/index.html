@@ -4,4 +4,10 @@
 
 {% block content %}
 <h2>Hire me</h2>
+{% for experience in experiences %}
+<div class="experience">
+    <h4>{{ experience.title }}</h4>
+    <p>{{ experience.date_from }} - {{ experience.date_to }}</p>
+    </div>
+{% endfor %}
 {% endblock %}
