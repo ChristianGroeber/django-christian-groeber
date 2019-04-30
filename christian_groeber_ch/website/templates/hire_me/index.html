@@ -6,6 +6,9 @@
 <h2>Hire me</h2>
 {% for experience in experiences %}
 <div class="experience">
+{% if experience.exp_type == 'element' %}
+<a href="{{ experience.url }}">{{ experience.title }}</a>
+{% else %}
     <h4>{{ experience.title }}</h4>
     <p>
         {{ experience.date_from }} -
@@ -16,5 +19,6 @@
         {% endif %}
     </p>
 </div>
+{% endif %}
 {% endfor %}
 {% endblock %}
