@@ -9,5 +9,4 @@ from .models import Resume, Experience
 def index(request):
     resume = Resume.objects.get(pk=1)
     experiences = resume.experiences.all().order_by('-date_from')
-    print(resume)
     return render(request, 'hire_me/index.html', {'resume': resume, 'experiences': experiences})

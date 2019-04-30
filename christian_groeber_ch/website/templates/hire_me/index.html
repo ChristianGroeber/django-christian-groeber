@@ -7,7 +7,14 @@
 {% for experience in experiences %}
 <div class="experience">
     <h4>{{ experience.title }}</h4>
-    <p>{{ experience.date_from }} - {{ experience.date_to }}</p>
-    </div>
+    <p>
+        {{ experience.date_from }} -
+        {% if experience.date_until %}
+        {{ experience.date_until }}
+        {% else %}
+        now
+        {% endif %}
+    </p>
+</div>
 {% endfor %}
 {% endblock %}
