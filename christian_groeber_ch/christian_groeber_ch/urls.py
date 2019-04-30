@@ -25,7 +25,7 @@ urlpatterns = [
     path('', include('website.urls')),
     url('portfolio/', include('portfolio.urls')),
     url('contact/', include('contact.urls')),
-    url('hire-me/', include('hire_me.urls')),
+    url('hire-me/', include('hire_me.urls'), name='hire-me'),
     url(r'^froala_editor/', include('froala_editor.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
