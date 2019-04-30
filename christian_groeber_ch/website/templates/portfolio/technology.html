@@ -14,12 +14,21 @@
         })
     })
 </script>
+<style>
+    .technology-logo{
+        display: block;
+        max-width:230px;
+        max-height:150px;
+        width: auto;
+        height: auto;
+    }
+</style>
 <div class="technology-view">
     <div class="row">
         {% if not technology.logo %}
         <h2 class="col-sm-8">{{ technology }}</h2>
         {% else %}
-        <img src="{{ technology.logo.url }}" width="80">
+        <img src="{{ technology.logo.url }}" class="technology-logo">
         {% endif %}
     </div>
     <div class="row">
