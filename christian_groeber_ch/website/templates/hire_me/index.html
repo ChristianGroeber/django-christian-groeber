@@ -17,7 +17,10 @@
         </div>
         <div class="col-sm-4">
             {% if experience.exp_type == 'element' %}
-            <a href="../portfolio/{{ experience.url }}"><h4>{{ experience.title }}</h4></a>
+            <h4>
+                <a href="../portfolio/{{ experience.portfolio_type }}/">{{ experience.portfolio_type }}</a> - 
+                <a href="../portfolio/{{ experience.url }}">{{ experience.title }}</a>
+            </h4>
             {% else %}
             <h4>{{ experience.title }}</h4>
             {% endif %}
