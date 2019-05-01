@@ -58,5 +58,3 @@ def get_portfolio_type_from_element(element, request):
             element.portfolio_type = type.title
             element.save()
             break
-    else:
-        return redirect(request.path())
