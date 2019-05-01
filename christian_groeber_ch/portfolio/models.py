@@ -67,6 +67,14 @@ class Technology(models.Model):
             self.save()
 
 
+class GalleryElement(models.Model):
+    title = models.CharField(max_length=50, default='Image')
+    file = models.ImageField(upload_to='gallery')
+
+    def __str__(self):
+        return self.title
+
+
 class Element(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
@@ -79,6 +87,7 @@ class Element(models.Model):
     portfolio_type = models.CharField(max_length=50, blank=True)
     date_started = models.DateField()
     date_finished = models.DateField(null=True, blank=True)
+    gallery_elements = models.ManyToManyField(GalleryElement)
 
     def generate_url(self):
         arr = str(self.title).split(' ')
@@ -107,6 +116,7 @@ class Type(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
     elements = models.ManyToManyField(Element, blank=True)
+    is_gallery = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
