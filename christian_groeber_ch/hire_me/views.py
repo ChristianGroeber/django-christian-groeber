@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from portfolio.models import Element
 from .models import Resume, Experience
+import portfolio.views
 
 
 # Create your views here.
@@ -17,7 +18,8 @@ def index(request):
     for element in elements:
         element.generate_url()
         experiences.append(ExperienceObject(element.title, element.date_started, 'element', description=element.description,
-                                            date_until=element.date_finished, url=element.url))
+                                            date_until=element.date_finished, url=element.portfolio_type + '/' + element.url))
+        portfolio.views.get_portfolio_type_from_element(element, request)
     sorted_experiences = sorted(experiences, key=lambda test: test.date_from)
     return render(request, 'hire_me/index.html', {'resume': resume, 'experiences': sorted_experiences})
 

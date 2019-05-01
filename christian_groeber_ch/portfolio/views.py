@@ -44,18 +44,19 @@ def technology(request, technology):
     all_elements = Element.objects.all()
     elements = []
     types = Type.objects.all()
-    print(types)
     for element in all_elements:
         if technology in element.technologies.all():
             elements.append(element)
             element.generate_url()
-            for type in types:
-                print(type)
-                if element in type.elements.all():
-                    element.portfolio_type = type.title
-                    element.save()
-                    break
-            else:
-                print(request.path())
-                return redirect(request.path())
+            get_portfolio_type_from_element(element, request)
     return render(request, 'portfolio/technology.html', {'technology': technology, 'elements': elements})
+
+
+def get_portfolio_type_from_element(element, request):
+    for type in Type.objects.all():
+        if element in type.elements.all():
+            element.portfolio_type = type.title
+            element.save()
+            break
+    else:
+        return redirect(request.path())
