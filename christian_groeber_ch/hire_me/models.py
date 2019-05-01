@@ -17,7 +17,7 @@ class Experience(Model):
 
 class Resume(Model):
     title = CharField(max_length=50, default='resume')
-    experiences = models.ManyToManyField(Experience, null=True, blank=True)
+    experiences = models.ManyToManyField(Experience, blank=True)
 
     def __str__(self):
         return 'Resume'

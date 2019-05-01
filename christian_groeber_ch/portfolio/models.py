@@ -17,12 +17,24 @@ class TimelineElement(models.Model):
         return self.title
 
 
+class IntegerRangeField(models.IntegerField):
+    def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
+        self.min_value, self.max_value = min_value, max_value
+        models.IntegerField.__init__(self, verbose_name, name, **kwargs)
+
+    def formfield(self, **kwargs):
+        defaults = {'min_value': self.min_value, 'max_value':self.max_value}
+        defaults.update(kwargs)
+        return super(IntegerRangeField, self).formfield(**defaults)
+
+
 class Technology(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
     logo = models.ImageField(upload_to='technology-logo', blank=True)
     color = ColorField(default='#FF0000')
     background_color = models.CharField(max_length=50, default='rgba(0,0,0,0.5)')
+    skill_level = IntegerRangeField(min_value=1, max_value=10)
 
     def __str__(self):
         return self.title

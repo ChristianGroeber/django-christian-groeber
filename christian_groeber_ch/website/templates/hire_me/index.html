@@ -21,6 +21,7 @@
                 <a href="../portfolio/{{ experience.portfolio_type }}/">{{ experience.portfolio_type }}</a> -
                 <a href="../portfolio/{{ experience.url }}">{{ experience.title }}</a>
             </h4>
+            <p>{{ experience.description }}</p>
                 <p>
                     {% for technology in experience.technologies %}
                     {{ technology }} |
@@ -28,6 +29,7 @@
                 </p>
             {% else %}
             <h4>{{ experience.title }}</h4>
+            <p>{{ experience.description }}</p>
             {% endif %}
         </div>
     </div>
