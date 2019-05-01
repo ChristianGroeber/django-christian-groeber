@@ -18,8 +18,7 @@
         <div class="col-sm-10">
             {% if experience.exp_type == 'element' %}
             <h4>
-                <a href="../portfolio/{{ experience.portfolio_type }}/">{{ experience.portfolio_type }}</a> -
-                <a href="../portfolio/{{ experience.url }}">{{ experience.title }}</a>
+                <a  href="../portfolio/{{ experience.url }}">{{ experience.title }}</a> <a style="font-size: 12px;" href="../portfolio/{{ experience.portfolio_type }}/">({{ experience.portfolio_type }})</a>
             </h4>
             <p>{{ experience.description }}</p>
                 <p>

@@ -31,7 +31,6 @@ def index(request):
         diff_years -= 1
     elif date_now.day - birthday.day < 0:
         diff_years -= 1
-    print(diff_years)
     return render(request, 'hire_me/index.html', {'resume': resume, 'experiences': sorted_experiences})
 
 
