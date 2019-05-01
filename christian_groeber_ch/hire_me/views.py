@@ -1,6 +1,9 @@
+import time
+
 from django.shortcuts import render, redirect
 from portfolio.models import Element
 from .models import Resume, Experience
+import datetime
 import portfolio.views
 
 
@@ -21,6 +24,14 @@ def index(request):
                                             date_until=element.date_finished, url=element.portfolio_type + '/' + element.url, portfolio_type=element.portfolio_type, technologies=element.technologies.all()))
         portfolio.views.get_portfolio_type_from_element(element, request)
     sorted_experiences = sorted(experiences, key=lambda test: test.date_from)
+    date_now = datetime.date.today()
+    birthday = datetime.date(1998, 9, 17)
+    diff_years = date_now.year - birthday.year
+    if date_now.month - birthday.month < 0:
+        diff_years -= 1
+    elif date_now.day - birthday.day < 0:
+        diff_years -= 1
+    print(diff_years)
     return render(request, 'hire_me/index.html', {'resume': resume, 'experiences': sorted_experiences})
 
 
