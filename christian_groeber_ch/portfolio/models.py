@@ -1,3 +1,4 @@
+from PIL import Image
 from django.db import models
 from django.db.models import ForeignKey
 from django.shortcuts import get_object_or_404
@@ -73,6 +74,12 @@ class GalleryElement(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args):
+        super(GalleryElement, self).save(force_update=False)
+        img = Image.open(self.image.path)
+        img.thumbnail((300, 300), Image.ANTIALIAS)
+        img.save(self.file.path)
 
 
 class Element(models.Model):
