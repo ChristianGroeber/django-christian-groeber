@@ -34,9 +34,11 @@ def spec_portfolio(request, portfolio_type):
 
 def element(request, portfolio_type, element):
     p_type = decode_url(Type, portfolio_type)
+    type_obj = Type.objects.get(title=p_type)
     elem = decode_url(Element, element)
-    content = elem.timeline_elements.all().order_by('-date')
-    return render(request, 'portfolio/element.html', {'element': elem, 'type': p_type, 'content': content})
+    # content = elem.timeline_elements.all().order_by('-date')
+    content = None
+    return render(request, 'portfolio/element.html', {'element': elem, 'type': p_type, 'content': content, 'is_gallery': type_obj.is_gallery})
 
 
 def technology(request, technology):
