@@ -15,12 +15,17 @@
             now
             {% endif %}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-10">
             {% if experience.exp_type == 'element' %}
             <h4>
-                <a href="../portfolio/{{ experience.portfolio_type }}/">{{ experience.portfolio_type }}</a> - 
+                <a href="../portfolio/{{ experience.portfolio_type }}/">{{ experience.portfolio_type }}</a> -
                 <a href="../portfolio/{{ experience.url }}">{{ experience.title }}</a>
             </h4>
+                <p>
+                    {% for technology in experience.technologies %}
+                    {{ technology }} |
+                    {% endfor %}
+                </p>
             {% else %}
             <h4>{{ experience.title }}</h4>
             {% endif %}
