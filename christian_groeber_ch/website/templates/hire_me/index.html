@@ -6,19 +6,23 @@
 <h2>Hire me</h2>
 {% for experience in experiences %}
 <div class="experience">
-{% if experience.exp_type == 'element' %}
-<a href="../Portfolio/{{ experience.url }}">{{ experience.title }}</a>
-{% else %}
-    <h4>{{ experience.title }}</h4>
-    <p>
-        {{ experience.date_from }} -
-        {% if experience.date_until %}
-        {{ experience.date_until }}
-        {% else %}
-        now
-        {% endif %}
-    </p>
+    <div class="row">
+        <div class="col-sm-2">
+            {{ experience.date_from|date:"j. n. Y" }} -
+            {% if experience.date_until %}
+            {{ experience.date_until|date:"j. n. Y" }}
+            {% else %}
+            now
+            {% endif %}
+        </div>
+        <div class="col-sm-4">
+            {% if experience.exp_type == 'element' %}
+            <a href="../portfolio/{{ experience.url }}"><h4>{{ experience.title }}</h4></a>
+            {% else %}
+            <h4>{{ experience.title }}</h4>
+            {% endif %}
+        </div>
+    </div>
 </div>
-{% endif %}
 {% endfor %}
 {% endblock %}
