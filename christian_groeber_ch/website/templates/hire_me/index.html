@@ -42,22 +42,32 @@
 </div>
 {% endfor %}
 <h3>My Skills</h3>
-<div class="row">
-    <div class="col-sm-4">Beginner</div>
-    <div class="col-sm-4" style="text-align: center;">Intermediate</div>
-    <div class="col-sm-4" style="text-align: right;">Pro</div>
-</div>
 {% for skill in skills %}
 <style>
-    a.{{ skill.title }}{
+    .technology-bar.{{ skill.title }}{
         width: calc({{ skill.skill_level }}% * 10) !important;
         display:block;
     }
 </style>
-<div class="row skill" id="{{ skill.title }}">
-    <div class="col-sm-12">
-        <a href="../portfolio/technology/{{ skill.title }}/" class="technology technology-bar {{ skill.title }}"
-            style="color:{{ skill.color }}; border: 2px solid {{ skill.background_color }}; background-color: {{ skill.background_color }};">{{ skill }}</a>
+<script>
+    $(document).ready(function(){
+        $('.technology-bar.{{ skill.title }}').mouseenter(function(){
+            //$('p.hidable.{{ skill.title }}').css('display', 'block');
+            $('p.hidable.{{ skill.title }}').slideDown(100, 'linear');
+        });
+        $('.technology-bar.{{ skill.title }}').mouseleave(function(){
+            //$('p.hidable.{{ skill.title }}').removeAttr('style');
+            $('p.hidable.{{ skill.title }}').slideUp(100, 'linear');
+        });
+    })
+</script>
+<div class="row skill" id="{{ skill.title }}" style="margin-left: 0 !important; margin-right: 0 !important">
+    <div class="col-sm-2" style="padding: 0 !important">
+        <a href="../portfolio/technology/{{ skill.title }}/" class="technology {{ skill.title }}"
+            style="color:{{ skill.color }};">{{ skill }}</a>
+    </div>
+    <div class="col-sm-10" style="padding: 0 !important">
+        <div class="technology-bar {{ skill.title }}" style="background-color: {{ skill.color }};"><p class="hidable {{ skill.title }}">{{ skill.skill_level }}/10</p>&#8203;</div>
     </div>
 </div>
 {% endfor %}
