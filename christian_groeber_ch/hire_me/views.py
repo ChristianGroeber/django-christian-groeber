@@ -1,7 +1,7 @@
 import time
 
 from django.shortcuts import render, redirect
-from portfolio.models import Element
+from portfolio.models import Element, Technology
 from .models import Resume, Experience
 import datetime
 import portfolio.views
@@ -31,7 +31,8 @@ def index(request):
         diff_years -= 1
     elif date_now.day - birthday.day < 0:
         diff_years -= 1
-    return render(request, 'hire_me/index.html', {'resume': resume, 'experiences': sorted_experiences})
+    skills = Technology.objects.all()
+    return render(request, 'hire_me/index.html', {'resume': resume, 'experiences': sorted_experiences, 'skills': skills})
 
 
 class ExperienceObject:

@@ -4,6 +4,7 @@
 
 {% block content %}
 <h2>Hire me</h2>
+<h3>Career</h3>
 {% for experience in experiences %}
 <div class="experience">
     <div class="row">
@@ -18,19 +19,32 @@
         <div class="col-sm-10">
             {% if experience.exp_type == 'element' %}
             <h4>
-                <a  href="../portfolio/{{ experience.url }}">{{ experience.title }}</a> <a style="font-size: 12px;" href="../portfolio/{{ experience.portfolio_type }}/">({{ experience.portfolio_type }})</a>
+                <a href="../portfolio/{{ experience.url }}">{{ experience.title }}</a> <a style="font-size: 12px;"
+                    href="../portfolio/{{ experience.portfolio_type }}/">({{ experience.portfolio_type }})</a>
             </h4>
             <p>{{ experience.description }}</p>
-                <p>
-                    {% for technology in experience.technologies %}
-                    {{ technology }} |
-                    {% endfor %}
-                </p>
+            <p>
+                {% for technology in experience.technologies %}
+                {{ technology }} |
+                {% endfor %}
+            </p>
             {% else %}
             <h4>{{ experience.title }}</h4>
             <p>{{ experience.description }}</p>
             {% endif %}
         </div>
+    </div>
+</div>
+{% endfor %}
+<h3>My Skills</h3>
+{% for skill in skills %}
+<div class="row">
+    <div class="col-sm-4">
+        <a href="../portfolio/technology/{{ skill.title }}/" class="col-sm-2 technology {{ skill.title }}"
+            style="color:{{ skill.color }}; border: 2px solid {{ skill.background_color }}; background-color: {{ skill.background_color }};">{{ skill }}</a>
+    </div>
+    <div class="col-sm-8">
+        {{ skill.skill_level }}
     </div>
 </div>
 {% endfor %}
