@@ -2,6 +2,7 @@ from PIL import Image
 from django.db import models
 from django.db.models import ForeignKey
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from froala_editor.fields import FroalaField
 from colorfield.fields import ColorField
 # Create your models here.
@@ -66,6 +67,9 @@ class Technology(models.Model):
                 ret += str(self.html_class).split(' ')[i]
             self.html_class = ret
             self.save()
+
+    def get_absolute_url(self):
+        return reverse('technology', args=[(str(self.title))])
 
 
 class GalleryElement(models.Model):
@@ -146,3 +150,6 @@ class Type(models.Model):
             str_type += arr_type[i]
         type = get_object_or_404(Type, title=str_type)
         return type
+
+    def get_absolute_url(self):
+        return reverse('portfolio', args=[(str(self.title))])

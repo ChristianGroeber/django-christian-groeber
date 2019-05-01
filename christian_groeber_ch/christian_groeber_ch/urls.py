@@ -16,17 +16,27 @@ Including another URLconf
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
+from website.sitemaps import TechnologySitemap, ElementSitemap, TypeSitemap
 from django.urls import path, include
 
 from . import settings
 
+
+sitemaps = {
+    'types': TypeSitemap,
+    'elements': ElementSitemap,
+    'technologies': TechnologySitemap
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', include('website.urls')),
-    url('portfolio/', include('portfolio.urls')),
-    url('contact/', include('contact.urls')),
+    url('portfolio/', include('portfolio.urls'), name='portfolio'),
+    url('contact/', include('contact.urls'), name='url'),
     url('hire-me/', include('hire_me.urls'), name='hire-me'),
     url(r'^froala_editor/', include('froala_editor.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
