@@ -35,6 +35,7 @@ class Technology(models.Model):
     color = ColorField(default='#FF0000')
     background_color = models.CharField(max_length=50, default='rgba(0,0,0,0.5)')
     skill_level = IntegerRangeField(min_value=1, max_value=10)
+    html_class = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return self.title
@@ -53,6 +54,17 @@ class Technology(models.Model):
         print(self.background_color)
         self.save()
         return ret
+
+    def set_html_class(self):
+        self.html_class = self.title
+        if ' ' in self.html_class:
+            ret = ''
+            for i in range(len(str(self.html_class).split(' '))):
+                if i is not 0:
+                    ret += '-'
+                ret += str(self.html_class).split(' ')[i]
+            self.html_class = ret
+            self.save()
 
 
 class Element(models.Model):

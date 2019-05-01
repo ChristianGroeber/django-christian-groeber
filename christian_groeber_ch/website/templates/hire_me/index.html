@@ -51,23 +51,21 @@
 </style>
 <script>
     $(document).ready(function(){
-        $('.technology-bar.{{ skill.title }}').mouseenter(function(){
-            //$('p.hidable.{{ skill.title }}').css('display', 'block');
-            $('p.hidable.{{ skill.title }}').slideDown(100, 'linear');
+        $('.technology-bar.{{ skill.html_class }}').mouseenter(function(){
+            $('p.hidable.{{ skill.html_class }}').slideDown(100, 'linear');
         });
-        $('.technology-bar.{{ skill.title }}').mouseleave(function(){
-            //$('p.hidable.{{ skill.title }}').removeAttr('style');
-            $('p.hidable.{{ skill.title }}').slideUp(100, 'linear');
+        $('.technology-bar.{{ skill.html_class }}').mouseleave(function(){
+            $('p.hidable.{{ skill.html_class }}').slideUp(100, 'linear');
         });
     })
 </script>
 <div class="row skill" id="{{ skill.title }}" style="margin-left: 0 !important; margin-right: 0 !important">
     <div class="col-sm-2" style="padding: 0 !important">
-        <a href="../portfolio/technology/{{ skill.title }}/" class="technology {{ skill.title }}"
+        <a href="../portfolio/technology/{{ skill.html_class }}/" class="technology {{ skill.html_class }}"
             style="color:{{ skill.color }};">{{ skill }}</a>
     </div>
     <div class="col-sm-10" style="padding: 0 !important">
-        <div class="technology-bar {{ skill.title }}" style="background-color: {{ skill.color }};"><p class="hidable {{ skill.title }}">{{ skill.skill_level }}/10</p>&#8203;</div>
+        <div class="technology-bar {{ skill.html_class }}" style="background-color: {{ skill.color }};"><p class="hidable {{ skill.html_class }}">{{ skill.skill_level }}/10</p>&#8203;</div>
     </div>
 </div>
 {% endfor %}

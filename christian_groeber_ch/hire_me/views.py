@@ -32,6 +32,8 @@ def index(request):
     elif date_now.day - birthday.day < 0:
         diff_years -= 1
     skills = Technology.objects.all()
+    for skill in skills:
+        skill.set_html_class()
     return render(request, 'hire_me/index.html', {'resume': resume, 'experiences': sorted_experiences, 'skills': skills})
 
 
