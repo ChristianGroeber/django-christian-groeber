@@ -1,4 +1,8 @@
-﻿div{
+﻿html{
+    scroll-behavior: smooth;
+}
+
+div{
     -webkit-transition: box-shadow 0.5s ease;
 }
 
