@@ -9,18 +9,19 @@
 {% if is_gallery %}
 {{ element.description }}
 <div class="text-center text-lg-left row">
-            {% for img in element.gallery_elements.all %}
-            <div class="col-lg-2 col-md-3 col-6">
-                    <img class="img-fluid img-thumbnail" src="{{ img.file.url }}" alt="{{ img.title }}">
-            </div>
-            {% endfor %}
-        </div>
+    {% for img in element.gallery_elements.all %}
+    <div class="col-lg-2 col-md-3 col-6">
+        <img class="img-fluid img-thumbnail" src="{{ img.file.url }}" alt="{{ img.title }}">
+    </div>
+    {% endfor %}
+</div>
 {% else %}
 <div class="row">
     {% for technology in element.technologies.all %}
-    <a href="../../technology/{{ technology.title }}" class="col-sm-2 technology {{ technology.title }}" style="color:{{ technology.color }}; border: 2px solid {{ technology.background_color }}; background-color: {{ technology.background_color }};">
-    {{ technology }}
-        </a>
+    <a href="../../technology/{{ technology.title }}" class="col-sm-2 technology {{ technology.title }}"
+        style="color:{{ technology.color }}; border: 2px solid {{ technology.background_color }}; background-color: {{ technology.background_color }};">
+        {{ technology }}
+    </a>
     {% endfor %}
 </div>
 <h4>{{ element.description }}</h4>
@@ -38,7 +39,7 @@
     </div>
     {% endif %}
 </div>
-    <hr>
+<hr>
 {% endfor %}
 {% endif %}
 {% endblock %}
