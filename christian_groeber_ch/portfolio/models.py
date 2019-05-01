@@ -77,7 +77,7 @@ class GalleryElement(models.Model):
 
     def save(self, *args):
         super(GalleryElement, self).save(force_update=False)
-        img = Image.open(self.image.path)
+        img = Image.open(self.file.path)
         img.thumbnail((300, 300), Image.ANTIALIAS)
         img.save(self.file.path)
 
