@@ -6,6 +6,30 @@
     -webkit-transition: box-shadow 0.5s ease !important;
 }
 
+@media (max-width:500px) {
+    .site-content{
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+@media (min-width:500px){
+    .site-content {
+        margin-top: 40px;
+        padding: 30px;
+        display: block;
+        margin-right: 2rem;
+        margin-left: 2rem;
+        box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        border-radius: 0.5rem;
+        margin-bottom: 40px;
+}
+}
+
+.site-content > h2{
+    padding-bottom: 5px;
+}
+
 .technology {
     margin: 2px;
     padding: 2px;
@@ -80,21 +104,6 @@ main{
 footer{
     color:white;
     padding: 2rem;
-}
-
-.site-content {
-    margin-top: 40px;
-    padding: 30px;
-    display: block;
-    margin-right: 2rem;
-    margin-left: 2rem;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    border-radius: 0.5rem;
-    margin-bottom: 40px;
-}
-
-.site-content > h2{
-    padding-bottom: 5px;
 }
 
 .profile-image{
