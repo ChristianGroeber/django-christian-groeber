@@ -14,6 +14,12 @@
         <img class="img-fluid img-thumbnail" src="{{ img.file.url }}" alt="{{ img.title }}">
     </div>
     {% endfor %}
+
+    {% for img in images %}
+    <div class="col-md-4">
+        <img class="img-fluid" src="{{ img.file.cdn_url }}-/crop/600x600/center/-/quality/lightest/" alt="">
+    </div>
+    {% endfor %}
 </div>
 {% else %}
 <div class="row">

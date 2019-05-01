@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['christiangroeber.pythonanywhere.com', '127.0.0.1', 'www.christ
 # Application definition
 
 INSTALLED_APPS = [
+    'pyuploadcare.dj',
     'hire_me',
     'colorfield',
     'website',
@@ -140,3 +141,10 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = 'static_cdn'
 MEDIA_ROOT = 'media_cdn'
+
+pwd = open(os.path.join(SETTINGS_PATH, 'christian_groeber_ch', 'pwd.txt', ), 'r')
+UPLOADCARE = {
+    'pub_key': pwd.readline(),
+    'secret': pwd.readline(),
+}
+EMAIL_HOST_PASSWORD = pwd.readline()

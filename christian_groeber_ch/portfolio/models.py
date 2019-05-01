@@ -1,9 +1,9 @@
-from PIL import Image
 from django.db import models
 from django.db.models import ForeignKey
 from django.shortcuts import get_object_or_404
 from froala_editor.fields import FroalaField
 from colorfield.fields import ColorField
+from pyuploadcare.dj.models import ImageField
 # Create your models here.
 
 
@@ -70,16 +70,10 @@ class Technology(models.Model):
 
 class GalleryElement(models.Model):
     title = models.CharField(max_length=50, default='Image')
-    file = models.ImageField(upload_to='gallery')
+    file = ImageField(blank=True, manual_crop="")
 
     def __str__(self):
         return self.title
-
-    def save(self, *args):
-        super(GalleryElement, self).save(force_update=False)
-        img = Image.open(self.file.path)
-        img.thumbnail((300, 300), Image.ANTIALIAS)
-        img.save(self.file.path)
 
 
 class Element(models.Model):
