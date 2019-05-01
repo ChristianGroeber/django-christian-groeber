@@ -94,7 +94,7 @@ class Element(models.Model):
     portfolio_type = models.CharField(max_length=50, blank=True)
     date_started = models.DateField()
     date_finished = models.DateField(null=True, blank=True)
-    gallery_elements = models.ManyToManyField(GalleryElement)
+    gallery_elements = models.ManyToManyField(GalleryElement, blank=True)
 
     def generate_url(self):
         arr = str(self.title).split(' ')
