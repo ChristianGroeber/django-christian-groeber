@@ -2,6 +2,10 @@
     -webkit-transition: box-shadow 0.5s ease;
 }
 
+*{
+    -webkit-transition: box-shadow 0.5s ease !important;
+}
+
 .technology {
     margin: 2px;
     padding: 2px;

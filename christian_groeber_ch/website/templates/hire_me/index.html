@@ -3,6 +3,11 @@
 {% block title %}Hire Christian Gröber{% endblock %}
 
 {% block content %}
+<style>
+    .skill{
+        margin: 10px;
+    }
+</style>
 <h2>Hire me</h2>
 <h3>Career</h3>
 {% for experience in experiences %}
@@ -25,7 +30,7 @@
             <p>{{ experience.description }}</p>
             <p>
                 {% for technology in experience.technologies %}
-                {{ technology }} |
+                <a style="color: black;" href="#{{ technology.title }}">{{ technology }}</a> |
                 {% endfor %}
             </p>
             {% else %}
@@ -37,14 +42,22 @@
 </div>
 {% endfor %}
 <h3>My Skills</h3>
-{% for skill in skills %}
 <div class="row">
-    <div class="col-sm-4">
-        <a href="../portfolio/technology/{{ skill.title }}/" class="col-sm-2 technology {{ skill.title }}"
+    <div class="col-sm-4">Beginner</div>
+    <div class="col-sm-4" style="text-align: center;">Intermediate</div>
+    <div class="col-sm-4" style="text-align: right;">Pro</div>
+</div>
+{% for skill in skills %}
+<style>
+    a.{{ skill.title }}{
+        width: calc({{ skill.skill_level }}% * 10) !important;
+        display:block;
+    }
+</style>
+<div class="row skill" id="{{ skill.title }}">
+    <div class="col-sm-12">
+        <a href="../portfolio/technology/{{ skill.title }}/" class="technology technology-bar {{ skill.title }}"
             style="color:{{ skill.color }}; border: 2px solid {{ skill.background_color }}; background-color: {{ skill.background_color }};">{{ skill }}</a>
-    </div>
-    <div class="col-sm-8">
-        {{ skill.skill_level }}
     </div>
 </div>
 {% endfor %}
