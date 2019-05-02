@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import flickrapi
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -140,3 +141,10 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = 'static_cdn'
 MEDIA_ROOT = 'media_cdn'
+
+pwd = open(os.path.join(SETTINGS_PATH, 'christian_groeber_ch', 'pwd.txt'), r)
+print(pwd)
+api_key = pwd.readline()
+api_secret = pwd.readline()
+flickr = flickrapi.FlickrAPI(api_key, api_secret)
+

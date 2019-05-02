@@ -16,3 +16,4 @@ about-me-test/*
 *.sqlite3
 .idea/*
 christian_groeber_ch/christian_groeber_ch/pwd.txt
+christian_groeber_ch/db.sqlite3-journal
