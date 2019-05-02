@@ -71,6 +71,7 @@ class Technology(models.Model):
 class GalleryElement(models.Model):
     title = models.CharField(max_length=50, default='Image')
     file = models.ImageField(upload_to='gallery')
+    thumbnail = models.ImageField(upload_to='gallery/thumbs', blank=True)
 
     def __str__(self):
         return self.title
@@ -78,11 +79,17 @@ class GalleryElement(models.Model):
     def save(self, *args):
         super(GalleryElement, self).save(force_update=False)
         img = Image.open(self.file.path)
+        thumb = Image.open(self.thumbnail.path)
         exif = dict((ExifTags.TAGS[k], v) for k, v in img._getexif().items() if k in ExifTags.TAGS)
-        if not exif['Orientation']:
+        if not exif['Orientation'] or exif['Orientation'] is 8:
             img = img.rotate(90, expand=True)
-        img.thumbnail((300, 300), Image.ANTIALIAS)
+            thumb = thumb.rotate(90, expand=True)
+        else:
+            print(exif['Orientation'])
+        thumb.thumbnail((300, 300), Image.ANTIALIAS)
         img.save(self.file.path)
+        print(self.thumbnail.path)
+        thumb.save(self.thumbnail.path)
 
 
 class Element(models.Model):
