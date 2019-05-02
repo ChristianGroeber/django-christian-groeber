@@ -1,7 +1,7 @@
 import time
 
 from django.shortcuts import render, redirect
-from portfolio.models import Element, Technology
+from portfolio.models import Element, Technology, Type
 from .models import Resume, Experience
 import datetime
 import portfolio.views
@@ -20,8 +20,9 @@ def index(request):
                                             date_until=experience.date_until))
     for element in elements:
         element.generate_url()
+        portfolio_type = Type.objects.get(title=element.portfolio_type)
         experiences.append(ExperienceObject(element.title, element.date_started, 'element', description=element.description,
-                                            date_until=element.date_finished, url=element.portfolio_type + '/' + element.url, portfolio_type=element.portfolio_type, technologies=element.technologies.all()))
+                                            date_until=element.date_finished, url=element.portfolio_type + '/' + element.url, portfolio_type=element.portfolio_type, technologies=element.technologies.all(), is_gallery=portfolio_type.is_gallery))
         portfolio.views.get_portfolio_type_from_element(element, request)
     sorted_experiences = sorted(experiences, key=lambda test: test.date_from)
     date_now = datetime.date.today()
@@ -38,7 +39,7 @@ def index(request):
 
 
 class ExperienceObject:
-    def __init__(self, title, date_from, exp_type, description=None, date_until=None, url=None, portfolio_type=None, technologies=None):
+    def __init__(self, title, date_from, exp_type, description=None, date_until=None, url=None, portfolio_type=None, technologies=None, is_gallery=None):
         self.title = title
         self.date_from = date_from
         self.description = description
@@ -47,3 +48,4 @@ class ExperienceObject:
         self.url = url
         self.portfolio_type = portfolio_type
         self.technologies = technologies
+        self.is_gallery = is_gallery

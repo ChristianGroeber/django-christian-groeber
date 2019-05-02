@@ -11,6 +11,7 @@
 <h2>Hire me</h2>
 <h3>Career</h3>
 {% for experience in experiences %}
+{% if not experience.is_gallery %}
 <div class="experience">
     <div class="row">
         <div class="col-sm-2">
@@ -40,6 +41,7 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% endfor %}
 <h3>My Skills</h3>
 {% for skill in skills %}
