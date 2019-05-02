@@ -1,7 +1,12 @@
+import os
+
+from PIL import Image, ExifTags
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
+import christian_groeber_ch
 from .models import Type, Element, TimelineElement, Technology
+from christian_groeber_ch.settings import MEDIA_ROOT as MEDIA_URL
 
 
 def portfolio(request):
@@ -38,7 +43,8 @@ def element(request, portfolio_type, element):
     elem = decode_url(Element, element)
     # content = elem.timeline_elements.all().order_by('-date')
     content = None
-    return render(request, 'portfolio/element.html', {'element': elem, 'type': p_type, 'content': content, 'is_gallery': type_obj.is_gallery})
+    is_gallery = type_obj.is_gallery
+    return render(request, 'portfolio/element.html', {'element': elem, 'type': p_type, 'content': content, 'is_gallery': is_gallery})
 
 
 def technology(request, technology):

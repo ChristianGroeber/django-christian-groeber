@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ExifTags
 from django.db import models
 from django.db.models import ForeignKey
 from django.shortcuts import get_object_or_404
@@ -78,6 +78,9 @@ class GalleryElement(models.Model):
     def save(self, *args):
         super(GalleryElement, self).save(force_update=False)
         img = Image.open(self.file.path)
+        exif = dict((ExifTags.TAGS[k], v) for k, v in img._getexif().items() if k in ExifTags.TAGS)
+        if not exif['Orientation']:
+            img = img.rotate(90, expand=True)
         img.thumbnail((300, 300), Image.ANTIALIAS)
         img.save(self.file.path)
 
