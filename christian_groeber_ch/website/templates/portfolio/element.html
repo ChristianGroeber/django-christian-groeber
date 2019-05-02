@@ -4,6 +4,14 @@
 {% block description %}{{ element.description }}{% endblock %}
 
 {% block content %}
+<style>
+    .img-fluid{
+        margin: 5px;
+    }
+    .img-fluid:hover{
+        box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+</style>
 <a href="../">Back to overview</a>
 <h2 class="page-title">{{ element.title }}</h2>
 {% if is_gallery %}
