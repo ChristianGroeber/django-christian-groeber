@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 import christian_groeber_ch
-from .models import Type, Element, TimelineElement, Technology
+from .models import Type, Element, TimelineElement, Technology, GalleryElement
 from christian_groeber_ch.settings import MEDIA_ROOT as MEDIA_URL
 
 
@@ -58,6 +58,23 @@ def technology(request, technology):
             element.generate_url()
             get_portfolio_type_from_element(element, request)
     return render(request, 'portfolio/technology.html', {'technology': technology, 'elements': elements})
+
+
+def image(request, gallery_element, img_id):
+    image = GalleryElement.objects.get(pk=img_id)
+    print(image.title)
+    return render(request, 'portfolio/image-view.html', {'img': image})
+
+
+def prev_image(request, gallery_element, img_id):
+    images = GalleryElement.objects.all()
+    print(img_id)
+    for i in range(len(images)):
+        print(images[i].id)
+        if images[i].id == int(img_id):
+            print('found last image')
+            return redirect('../../' + str(images[i - 1].id))
+    return redirect('../../')
 
 
 def get_portfolio_type_from_element(element, request):

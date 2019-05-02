@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ img.title }}{% endblock %}
+
+{% block content %}
+<script>
+    $(document).ready(function () {
+        img_height = $(window).height() - $('footer').height();
+        console.log(img_height);
+        $('.full-image').css('height', img_height);
+
+        $('.prev').click(function(){
+            window.location.replace('prev');
+        })
+    })
+</script>
+<style>
+    .centered {
+        align-content: center;
+        display: block;
+    }
+
+    img.full-image {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+<div class="centered">
+    <div class="row">
+        <div class="col-sm-1">
+            <p class="prev">previous</p>
+        </div>
+        <div class="col-sm-10">
+            <img class="full-image" src="{{ img.file.url }}" alt="{{ img.title }}" title="{{ img.title }}">
+        </div>
+        <div class="col-sm-1">
+            <a href="">next</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

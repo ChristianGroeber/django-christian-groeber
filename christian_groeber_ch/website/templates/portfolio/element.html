@@ -11,7 +11,7 @@
 <div class="text-center text-lg-left row">
     {% for img in element.gallery_elements.all %}
     <div class="col-lg-2 col-md-3 col-6">
-        <img class="img-fluid img-thumbnail" src="{{ img.thumbnail.url }}" alt="{{ img.title }}">
+        <a href="{{ img.id }}"><img class="img-fluid" src="{{ img.thumbnail.url }}" alt="{{ img.title }}"></a>
     </div>
     {% endfor %}
 </div>
