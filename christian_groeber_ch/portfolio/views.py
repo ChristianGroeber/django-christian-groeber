@@ -67,7 +67,12 @@ def image(request, gallery_element, img_id):
 
 
 def prev_image(request, gallery_element, img_id):
-    images = Element.objects.get(title=gallery_element).gallery_elements.all()
+    elements = Element.objects.all()
+    images = []
+    title = Element.get_from_url(gallery_element)
+    for el in elements:
+        if str(title) == str(el.title):
+            images = Element.objects.get(title=title).gallery_elements.all()
     for i in range(len(images)):
         if images[i].id == int(img_id):
             try:
@@ -78,7 +83,12 @@ def prev_image(request, gallery_element, img_id):
 
 
 def next_image(request, gallery_element, img_id):
-    images = Element.objects.get(title=gallery_element).gallery_elements.all()
+    elements = Element.objects.all()
+    images = []
+    title = Element.get_from_url(gallery_element)
+    for el in elements:
+        if str(title) == str(el.title):
+            images = Element.objects.get(title=title).gallery_elements.all()
     for i in range(len(images)):
         if images[i].id == int(img_id):
             try:
