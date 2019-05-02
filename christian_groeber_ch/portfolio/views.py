@@ -67,13 +67,26 @@ def image(request, gallery_element, img_id):
 
 
 def prev_image(request, gallery_element, img_id):
-    images = GalleryElement.objects.all()
-    print(img_id)
+    images = Element.objects.get(title=gallery_element).gallery_elements.all()
     for i in range(len(images)):
-        print(images[i].id)
         if images[i].id == int(img_id):
-            print('found last image')
-            return redirect('../../' + str(images[i - 1].id))
+            try:
+                return redirect('../../' + str(images[i - 1].id))
+            except AssertionError:
+                return redirect('../../')
+    return redirect('../../')
+
+
+def next_image(request, gallery_element, img_id):
+    images = Element.objects.get(title=gallery_element).gallery_elements.all()
+    for i in range(len(images)):
+        if images[i].id == int(img_id):
+            try:
+                return redirect('../../' + str(images[i + 1].id))
+            except AssertionError:
+                return redirect('../../')
+            except IndexError:
+                return redirect('../../')
     return redirect('../../')
 
 

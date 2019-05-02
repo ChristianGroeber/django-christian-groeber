@@ -12,6 +12,9 @@
         $('.prev').click(function(){
             window.location.replace('prev');
         })
+        $('.next').click(function(){
+            window.location.replace('next');
+        })
     })
 </script>
 <style>
@@ -28,13 +31,13 @@
 <div class="centered">
     <div class="row">
         <div class="col-sm-1">
-            <p class="prev">previous</p>
+            <p class="prev linked">previous</p>
         </div>
         <div class="col-sm-10">
             <img class="full-image" src="{{ img.file.url }}" alt="{{ img.title }}" title="{{ img.title }}">
         </div>
         <div class="col-sm-1">
-            <a href="">next</a>
+            <p class="next linked">next</p>
         </div>
     </div>
 </div>
