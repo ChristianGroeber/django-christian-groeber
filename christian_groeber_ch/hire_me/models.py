@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models import Model, CharField, ImageField
+from froala_editor.fields import FroalaField
+
 from portfolio.models import Element
 
 # Create your models here.
@@ -17,6 +19,8 @@ class Experience(Model):
 
 class Resume(Model):
     title = CharField(max_length=50, default='resume')
+    whoami = FroalaField()
+    services = FroalaField()
     experiences = models.ManyToManyField(Experience, blank=True)
 
     def __str__(self):
