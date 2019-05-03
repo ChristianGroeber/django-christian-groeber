@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    url(r'.well-known/pki-validation/C3D56FF12F47C32F673F55F046ADFE3C.txt', views.csr),
+    path('sitemap.xml', views.sitemap, name='sitemap'),
 ]
