@@ -14,7 +14,7 @@
 <h3>Why should you hire me?</h3>
 {{ resume.services|safe }}
 <h3>Career</h3>
-{% for experience in experiences %}
+{% for experience in experiences reversed %}
 {% if not experience.is_gallery %}
 <div class="experience">
     <div class="row">
