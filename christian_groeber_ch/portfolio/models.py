@@ -37,6 +37,7 @@ class Technology(models.Model):
     background_color = models.CharField(max_length=50, default='rgba(0,0,0,0.5)')
     skill_level = IntegerRangeField(min_value=1, max_value=10)
     html_class = models.CharField(max_length=100, blank=True)
+    importance = models.IntegerField()
 
     def __str__(self):
         return self.title
