@@ -5,11 +5,12 @@
 
 {% block content %}
 <style>
-    .img-fluid{
+    .img-fluid {
         margin: 5px;
     }
-    .img-fluid:hover{
-        box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+    .img-fluid:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     }
 </style>
 <a href="../">Back to overview</a>
@@ -26,8 +27,8 @@
 {% else %}
 <div class="row">
     {% for technology in element.technologies.all %}
-    <a href="../../technology/{{ technology.title }}" class="col-sm-2 technology {{ technology.title }}"
-        style="color:{{ technology.color }}; border: 2px solid {{ technology.background_color }}; background-color: {{ technology.background_color }};">
+    <a href="../../technology/{{ technology.title }}" class="col-sm technology {{ technology.title }}"
+        style="white-space: nowrap;color:{{ technology.color }}; border: 2px solid {{ technology.background_color }}; background-color: {{ technology.background_color }};">
         {{ technology }}
     </a>
     {% endfor %}
