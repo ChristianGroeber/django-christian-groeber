@@ -10,9 +10,9 @@
 </style>
 <h2>Hire me</h2>
 <h3>Who am I?</h3>
-{{ resume.whoami }}
+{{ resume.whoami|safe }}
 <h3>Why should you hire me?</h3>
-{{ resume.services }}
+{{ resume.services|safe }}
 <h3>Career</h3>
 {% for experience in experiences %}
 {% if not experience.is_gallery %}
