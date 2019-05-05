@@ -16,3 +16,12 @@ class Post(Model):
 
     def __str__(self):
         return self.title
+
+
+def get_posts_by_year(year):
+    posts = Post.objects.all()
+    year_posts = []
+    for post in posts:
+        if post.date_posted.year == year:
+            year_posts.append(post)
+    return year_posts

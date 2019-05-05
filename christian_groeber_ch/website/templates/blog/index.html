@@ -7,4 +7,7 @@
 {% for post in posts %}
 <a href="{{ post.date_posted|date:'Y' }}/{{ post.date_posted|date:'m' }}/{{ post.title }}">{{ post.title }}</a>
 {% endfor %}
+{% for post in year_posts %}
+<a href="{{ post.date_posted|date:'m' }}/{{ post.title }}">{{ post.title }}</a>
+{% endfor %}
 {% endblock %}
