@@ -1,0 +1,59 @@
+a:hover {
+        text-decoration: none;
+    }
+
+    .post-author {
+        font-style: italic;
+        font-size: 10px;
+        color: rgb(123, 123, 123);
+    }
+
+    .post-header {
+        line-height: 0.1rem;
+    }
+
+    .date-posted {
+        font-size: smaller;
+        color: rgba(100, 100, 100);
+    }
+
+    .blog-link:hover{
+        cursor:pointer;
+    }
+
+    .blog-link-list {
+        margin-top: -10px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    img.main-image {
+        max-height: 15rem;
+        width: 100%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .topic{
+        color: blue;
+        display: block;
+        background-color: lightblue;
+        height: 40px;
+        margin: 5px;
+        padding: 17px 10px 0 10px;
+        width: 20%;
+        text-align: center;
+        border: 2px solid rgba(78, 59, 255, 0.5);
+        border-radius: 50px;
+        position: relative;
+    }
+
+    a.link-unstyled{
+        color: black;
+    }
+
+    ul.no-padding{
+        padding-inline-start: 0 !important;
+    }
