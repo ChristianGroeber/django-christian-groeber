@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post
+from .models import Post, Topic
 from . import models
 
 
@@ -20,3 +20,9 @@ def year_post(request, year):
 def post(request, year, month, post_title):
     post = Post.objects.get(title=post_title)
     return render(request, 'blog/blog.html', {'post': post})
+
+
+def topic(request, topic):
+    topic_obj = Topic.objects.get(title=topic)
+    posts = models.get_post_from_topic(topic_obj)
+    return render(request, 'blog/topic.html', {'topic': topic_obj, 'posts': posts})

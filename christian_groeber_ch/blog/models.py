@@ -34,3 +34,11 @@ def get_posts_by_year(year):
         if post.date_posted.year == year:
             year_posts.append(post)
     return year_posts
+
+
+def get_post_from_topic(topic):
+    posts = []
+    for post in Post.objects.all().order_by('-date_posted'):
+        if topic in post.topics.all():
+            posts.append(post)
+    return posts

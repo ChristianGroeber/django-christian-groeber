@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Christian Gröber | {{ topic.title }} {% endblock %}
+
+{% block content %}
+<link href="{% static 'css/blog.css' %}" rel="stylesheet">
+<h2>{{ topic.title }}</h2>
+<h4>{{ topic.description }}</h4>
+{% for post in posts %}
+<h3>{{ post.title }}</h3>
+<img class="main-image" src="{{ post.main_image.url }}">
+<h4>{{ post.description }}</h4>
+{{ post.text|safe }}
+{% endfor %}
+{% endblock %}
