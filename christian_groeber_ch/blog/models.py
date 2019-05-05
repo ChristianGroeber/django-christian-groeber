@@ -6,6 +6,11 @@ from froala_editor.fields import FroalaField
 from django.utils import timezone
 
 
+class Topic(Model):
+    title = CharField(max_length=50)
+    description = CharField(max_length=500, blank=True)
+
+
 class Post(Model):
     title = CharField(max_length=50)
     description = CharField(max_length=500, blank=True)
@@ -13,6 +18,7 @@ class Post(Model):
     main_image = models.ImageField(upload_to='blog', blank=True)
     text = FroalaField()
     author = CharField(max_length=50, default='Christian Gröber')
+    topics = models.ManyToManyField(Topic)
 
     def __str__(self):
         return self.title
