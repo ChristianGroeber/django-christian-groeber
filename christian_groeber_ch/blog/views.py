@@ -20,4 +20,5 @@ def month_post(request, year, month):
 
 def post(request, year, month, post_title):
     print(post_title)
-    return render(request, 'blog/index.html')
+    post = Post.objects.get(title=post_title)
+    return render(request, 'blog/post.html', {'post': post_title})
