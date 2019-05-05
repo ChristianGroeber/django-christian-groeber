@@ -64,13 +64,12 @@
                                 <h3>{{ post.title }}</h3>
                             </a>
                             <img class="main-image" src="{{ post.main_image }}">
-                            <p class='date-posted'>Posted on {{ post.date_posted }}</p>
+                            <p class='date-posted'>Posted on {{ post.date_posted|date:'d. M. Y, H:m' }}</p>
                             <p class='post-author'>By {{ post.author }}</p>
                             <div class="topics row">
-                                <a class="topic col-sm link-unstyled" href="topic/news/">News</a>
-                                <div class="topic col-sm"><a class="link-unstyled" href="topics/news/">News</a></div>
-                                <div class="technology col-sm"><a href="topics/news/">News</a></div>
-                                <div class="topic col-sm"><a href="topics/news/">News</a></div>
+                                {% for topic in post.topics.all %}
+                                    <a class="topic col-sm link-unstyled" href="topic/{{ topic.title }}/">{{ topic.title }}</a>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class='post-content'>

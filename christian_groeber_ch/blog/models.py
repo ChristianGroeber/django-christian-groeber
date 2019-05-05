@@ -10,6 +10,9 @@ class Topic(Model):
     title = CharField(max_length=50)
     description = CharField(max_length=500, blank=True)
 
+    def __str__(self):
+        return self.title
+
 
 class Post(Model):
     title = CharField(max_length=50)
