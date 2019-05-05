@@ -3,7 +3,15 @@
 {% block title %}Christian Gröber | Blog {% endblock %}
 
 {% block content %}
-<h2>Blog</h2>
+<h2>
+{% if year_posts %}
+    Blog overview for year {{ year }}
+    {% elif month_posts %}
+    Blog overview for {{ month|date:'F' }}
+    {% else %}
+    Blog
+    {% endif %}
+</h2>
 {% for post in posts %}
 <a href="{{ post.date_posted|date:'Y' }}/{{ post.date_posted|date:'m' }}/{{ post.title }}">{{ post.title }}</a>
 {% endfor %}

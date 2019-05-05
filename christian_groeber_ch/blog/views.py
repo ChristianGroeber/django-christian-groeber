@@ -13,12 +13,12 @@ def index(request):
 
 def year_post(request, year):
     posts = models.get_posts_by_year(year)
-    return render(request, 'blog/index.html', {'year_posts': posts})
+    return render(request, 'blog/index.html', {'year_posts': posts, 'year': year})
 
 
 def month_post(request, year, month):
     posts = models.get_posts_by_month(year, month)
-    return render(request, 'blog/index.html', {'month_posts': posts})
+    return render(request, 'blog/index.html', {'month_posts': posts, 'month': posts[0].date_posted})
 
 
 def post(request, year, month, post_title):
