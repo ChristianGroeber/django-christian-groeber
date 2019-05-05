@@ -25,3 +25,12 @@ def get_posts_by_year(year):
         if post.date_posted.year == year:
             year_posts.append(post)
     return year_posts
+
+
+def get_posts_by_month(year, month):
+    posts = get_posts_by_year(year)
+    month_posts = []
+    for post in posts:
+        if post.date_posted.month == month:
+            month_posts.append(post)
+    return month_posts

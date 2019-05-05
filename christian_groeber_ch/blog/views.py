@@ -17,7 +17,8 @@ def year_post(request, year):
 
 
 def month_post(request, year, month):
-    return render(request, 'blog/index.html')
+    posts = models.get_posts_by_month(year, month)
+    return render(request, 'blog/index.html', {'month_posts': posts})
 
 
 def post(request, year, month, post_title):
