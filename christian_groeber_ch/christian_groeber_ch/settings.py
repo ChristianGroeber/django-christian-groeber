@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['christiangroeber.pythonanywhere.com', '127.0.0.1', 'www.christ
 # Application definition
 
 INSTALLED_APPS = [
+    'blog',
     'hire_me',
     'colorfield',
     'website',

@@ -22,11 +22,12 @@ from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('', include('website.urls')),
+    path('', include('website.urls'), name='index'),
     path('sitemap.xml', include('website.urls')),
     url('portfolio/', include('portfolio.urls')),
     url('contact/', include('contact.urls')),
     url('hire-me/', include('hire_me.urls'), name='hire-me'),
+    url('blog/', include('blog.urls'), name='blog'),
     url(r'^froala_editor/', include('froala_editor.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
