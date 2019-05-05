@@ -53,16 +53,21 @@
     </div>
 
     <div class="col-sm-9">
+        {% if posts_2019 or year_posts %}
         <ul class="no-padding">
-            <li id="2019"><h3>2019</h3></li>
+            <li id="2019"><h3>
+                {% if year %}
+                {{ year }}
+                {% else %}
+                2019
+                {% endif %}
+            </h3></li>
             <ul class="no-padding">
                 {% for post in posts_2019 %}
                 <li>
                     <div class='blog-post' id='{{ post.title }}'>
                         <div class='post-header'>
-                            <a href='#{{ post.title }}'>
-                                <h3>{{ post.title }}</h3>
-                            </a>
+                            <h3>{{ post.title }}</h3>
                             <img class="main-image" src="{{ post.main_image }}">
                             <p class='date-posted'>Posted on {{ post.date_posted|date:'d. M. Y, H:m' }}</p>
                             <p class='post-author'>By {{ post.author }}</p>
@@ -82,5 +87,8 @@
             </ul>
         </ul>
     </div>
+    {% else %}
+    <p>There are no posts</p>
+    {% endif %}
 </div>
 {% endblock %}
