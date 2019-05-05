@@ -5,4 +5,4 @@ from django.shortcuts import render, redirect
 
 
 def index(request):
-    return redirect('/')
+    return render(request, 'blog/index.html')
