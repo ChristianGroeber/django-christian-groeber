@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    a:hover {
+        text-decoration: none;
+    }
+
+    .post-author {
+        font-style: italic;
+        font-size: 10px;
+        color: rgb(123, 123, 123);
+    }
+
+    .post-header {
+        line-height: 0.1rem;
+    }
+
+    .date-posted {
+        font-size: smaller;
+        color: rgba(100, 100, 100);
+    }
+
+    .blog-link:hover{
+        cursor:pointer;
+    }
+
+    .blog-link-list {
+        margin-top: -10px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    img.main-image {
+        max-height: 15rem;
+        width: 100%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .topic{
+        color: blue;
+        display: block;
+        background-color: lightblue;
+        height: 40px;
+        margin: 5px;
+        padding: 17px 10px 0 10px;
+        width: 20%;
+        text-align: center;
+        border: 2px solid rgba(78, 59, 255, 0.5);
+        border-radius: 50px;
+        position: relative;
+    }
+
+    a.link-unstyled{
+        color: black;
+    }
+
+    ul.no-padding{
+        padding-inline-start: 0 !important;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('.blog-link').click(function () {
+            var el = $(this).attr('title')
+            document.location.replace('#' + el)
+        })
+    })
+</script>
+<div class='row'>
+    <div class="col-sm-3 post-nav">
+        <h4>Archive</h4>
+        <ul class="no-padding">
+            <li>
+                <p class="blog-link" title="2019">2019</p>
+            </li>
+            <li>
+                <ul class="no-padding">
+                    <li class="blog-link-list">
+                        <p class="blog-link" title='this-is-a-test'>This is a test</p>
+                    </li>
+                    <li class="blog-link-list">
+                        <p class="blog-link" title="this-is-a-test2">This is a test 2</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p class="blog-link" title="2018">2018</p>
+            </li>
+            <li>
+                <ul class="no-padding">
+                    <li class="blog-link-list">
+                        <p class="blog-link" title="this-is-a-test3">This is a test 2</p>
+                    </li>
+                    <li class="blog-link-list">
+                        <p class="blog-link" title="this-is-a-test4">This is a test 2</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-sm-9">
+
+        <ul class="no-padding">
+            <li id="2019"><h3>2019</h3></li>
+            <ul class="no-padding">
+                <li>
+                    <div class='blog-post' id='this-is-a-test'>
+                        <div class='post-header'>
+                            <a href='#this-is-a-test'>
+                                <h2>This is a test</h2>
+                            </a>
+                            <img class="main-image" src="{% static 'img/blackhole.jpg' %}">
+                            <p class='date-posted'>Posted on 1.1.2019</p>
+                            <p class='post-author'>By Christian Gröber</p>
+                            <div class="topics row">
+                                <a class="topic col-sm link-unstyled" href="topic/news/">News</a>
+                                <div class="topic col-sm"><a class="link-unstyled" href="topics/news/">News</a></div>
+                                <div class="technology col-sm"><a href="topics/news/">News</a></div>
+                                <div class="topic col-sm"><a href="topics/news/">News</a></div>
+                            </div>
+                        </div>
+                        <div class='post-content'>
+                            <p>
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                                eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                                takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+                                ipsum dolor sit amet.
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                </li>
+                <li>
+                    <div class='blog-post' id='this-is-a-test2'>
+                        <div class='post-header'>
+                            <a href='#this-is-a-test'>
+                                <h2>This is a test</h2>
+                            </a>
+                            <img class="main-image"
+                                src="https://media.wired.com/photos/5cadec1fb75f9b23c6466d74/master/w_582,c_limit/blackhole.jpg">
+                            <p class='date-posted'>Posted on 1.1.2019</p>
+                            <p class='post-author'>By Christian Gröber</p>
+                        </div>
+                        <div class='post-content'>
+                            <p>
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                                eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                                takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+                                ipsum dolor sit amet.
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                </li>
+            </ul>
+            <li id="2018"><h3>2018</h3></li>
+            <ul class="no-padding">
+                <li>
+                    <div class='blog-post' id='this-is-a-test3'>
+                        <div class='post-header'>
+                            <a href='#this-is-a-test'>
+                                <h2>This is a test</h2>
+                            </a>
+                            <p class='date-posted'>Posted on 1.1.2019</p>
+                            <p class='post-author'>By Christian Gröber</p>
+                        </div>
+                        <div class='post-content'>
+                            <p>
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                                invidunt
+                                ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                                justo duo
+                                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+                                dolor
+                                sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                                eirmod tempor
+                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                                accusam et
+                                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                                Lorem
+                                ipsum dolor sit amet.
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                </li>
+                <li>
+                    <div class='blog-post' id='this-is-a-test4'>
+                        <div class='post-header'>
+                            <a href='#this-is-a-test'>
+                                <h2>This is a test</h2>
+                            </a>
+                            <p class='date-posted'>Posted on 1.1.2019</p>
+                            <p class='post-author'>By Christian Gröber</p>
+                        </div>
+                        <div class='post-content'>
+                            <p>
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                                invidunt
+                                ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                                justo duo
+                                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+                                dolor
+                                sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                                eirmod tempor
+                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                                accusam et
+                                justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                                Lorem
+                                ipsum dolor sit amet.
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                </li>
+            </ul>
+        </ul>
+    </div>
+</div>
+{% endblock %}
