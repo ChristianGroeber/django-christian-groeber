@@ -4,4 +4,7 @@
 
 {% block content %}
 <h2>Blog</h2>
+{% for post in posts %}
+<a href="{{ post.date_posted|date:'Y' }}/{{ post.date_posted|date:'m' }}/{{ post.title }}">{{ post.title }}</a>
+{% endfor %}
 {% endblock %}
