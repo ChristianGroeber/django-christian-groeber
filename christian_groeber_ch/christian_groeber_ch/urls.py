@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', include('website.urls'), name='index'),
     path('sitemap.xml', include('website.urls')),
+    path('muttertag/', include('website.urls')),
     url('portfolio/', include('portfolio.urls')),
     url('contact/', include('contact.urls')),
     url('hire-me/', include('hire_me.urls'), name='hire-me'),
