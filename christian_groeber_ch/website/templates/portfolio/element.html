@@ -12,6 +12,12 @@
     .img-fluid:hover {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     }
+
+    .timeline-date {
+        color: #686868;
+        font-size: 14px;
+        font-style: italic;
+    }
 </style>
 <a href="../">Back to overview</a>
 <h2 class="page-title">{{ element.title }}</h2>
@@ -42,7 +48,8 @@
 <div class="row">
     <div class="col-sm-8">
         <h5>{{ elem.title }}</h5>
-        <p class="timeline-date">{{ elem.date }}</p>
+        <p class="timeline-date">{{ elem.date|date:'d.m.y H:i' }}</p>
+        <p>{{ elem.description }}</p>
         {{ elem.text|safe }}
     </div>
     {% if elem.image %}
@@ -50,8 +57,8 @@
         <img src="{{ elem.image.url }}">
     </div>
     {% endif %}
+    <hr>
 </div>
-<hr>
 {% endfor %}
 {% endif %}
 {% endblock %}
