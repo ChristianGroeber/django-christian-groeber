@@ -15,6 +15,9 @@
 </style>
 <a href="../">Back to overview</a>
 <h2 class="page-title">{{ element.title }}</h2>
+{% if element.link %}
+<a href="{{ element.link }}" target="_blank">{{ element.link }}</a>
+{% endif %}
 {% if is_gallery %}
 {{ element.description }}
 <div class="text-center text-lg-left row">
