@@ -22,7 +22,10 @@
 <a href="../">Back to overview</a>
 <h2 class="page-title">{{ element.title }}</h2>
 {% if element.link %}
-<a href="{{ element.link }}" target="_blank">{{ element.link }}</a>
+<a href="{{ element.link }}" target="_blank">{{ element.link }}</a><br>
+{% endif %}
+{% if element.github %}
+<a href="{{ element.github }}" target="_blank" alt="{{ element.github }}">GitHub Repo</a>
 {% endif %}
 {% if is_gallery %}
 {{ element.description }}

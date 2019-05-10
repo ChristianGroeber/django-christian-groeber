@@ -106,6 +106,7 @@ class Element(models.Model):
     date_started = models.DateField()
     date_finished = models.DateField(null=True, blank=True)
     gallery_elements = models.ManyToManyField(GalleryElement, blank=True)
+    github = models.CharField(max_length=200, blank=True)
     link = models.CharField(max_length=200, blank=True)
 
     def generate_url(self):
