@@ -108,6 +108,7 @@ class Element(models.Model):
     gallery_elements = models.ManyToManyField(GalleryElement, blank=True)
     github = models.CharField(max_length=200, blank=True)
     link = models.CharField(max_length=200, blank=True)
+    include_in_resume = models.BooleanField(default=True)
 
     def generate_url(self):
         arr = str(self.title).split(' ')

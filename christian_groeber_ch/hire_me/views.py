@@ -21,9 +21,10 @@ def index(request):
     for element in elements:
         element.generate_url()
         portfolio_type = Type.objects.get(title=element.portfolio_type)
-        experiences.append(ExperienceObject(element.title, element.date_started, 'element', description=element.description,
+        if element.include_in_resume:
+            experiences.append(ExperienceObject(element.title, element.date_started, 'element', description=element.description,
                                             date_until=element.date_finished, url=element.portfolio_type + '/' + element.url, portfolio_type=element.portfolio_type, technologies=element.technologies.all(), is_gallery=portfolio_type.is_gallery))
-        portfolio.views.get_portfolio_type_from_element(element, request)
+            portfolio.views.get_portfolio_type_from_element(element, request)
     sorted_experiences = sorted(experiences, key=lambda test: test.date_from)
     date_now = datetime.date.today()
     birthday = datetime.date(1998, 9, 17)
