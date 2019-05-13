@@ -50,7 +50,7 @@
 <h3>My Skills</h3>
 {% for skill in skills %}
 <style>
-    .technology-bar.{{ skill.title }}{
+    .technology-bar.{{ skill.html_class }}{
         width: calc({{ skill.skill_level }}% * 10) !important;
         display:block;
     }
