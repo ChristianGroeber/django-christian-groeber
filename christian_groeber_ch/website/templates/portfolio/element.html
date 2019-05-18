@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load martortags %}
+
 {% block title %}{{ element.title }} by Christian Gröber{% endblock %}
 {% block description %}{{ element.description }}{% endblock %}
 
@@ -47,6 +49,7 @@
 </div>
 <h4>{{ element.description }}</h4>
 {{ element.text|safe }}
+{{ element.martor_test|safe_markdown }}
 {% for elem in content %}
 <div class="row">
     <div class="col-sm-8">

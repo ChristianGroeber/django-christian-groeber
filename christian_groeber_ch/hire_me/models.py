@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Model, CharField, ImageField
 from froala_editor.fields import FroalaField
+from martor.models import MartorField
 
 from portfolio.models import Element
 
@@ -19,8 +20,8 @@ class Experience(Model):
 
 class Resume(Model):
     title = CharField(max_length=50, default='resume')
-    whoami = FroalaField()
-    services = FroalaField()
+    whoami = MartorField()
+    services = MartorField()
     experiences = models.ManyToManyField(Experience, blank=True)
 
     def __str__(self):

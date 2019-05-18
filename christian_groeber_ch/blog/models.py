@@ -1,9 +1,9 @@
 from django.db import models
 from django.db.models import Model, CharField
-from froala_editor.fields import FroalaField
 
 # Create your models here.
 from django.utils import timezone
+from martor.models import MartorField
 
 
 class Topic(Model):
@@ -19,7 +19,7 @@ class Post(Model):
     description = CharField(max_length=500, blank=True)
     date_posted = models.DateTimeField(default=timezone.now())
     main_image = models.ImageField(upload_to='blog', blank=True)
-    text = FroalaField()
+    text = MartorField()
     author = CharField(max_length=50, default='Christian Gröber')
     topics = models.ManyToManyField(Topic)
 

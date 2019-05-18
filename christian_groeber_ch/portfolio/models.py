@@ -4,6 +4,7 @@ from django.db.models import ForeignKey
 from django.shortcuts import get_object_or_404
 from froala_editor.fields import FroalaField
 from colorfield.fields import ColorField
+from martor.models import MartorField
 # Create your models here.
 
 
@@ -11,7 +12,7 @@ class TimelineElement(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
     image = models.ImageField(upload_to='timeline_element', blank=True)
-    text = FroalaField(blank=True)
+    text = MartorField(blank=True)
     date = models.DateTimeField(blank=True)
 
     def __str__(self):
@@ -97,7 +98,7 @@ class Element(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True)
     image = models.ImageField(upload_to='portfolio_elements', blank=True)
-    text = FroalaField(blank=True)
+    text = MartorField(blank=True)
     files = models.FileField(blank=True)
     subscriptable = models.BooleanField(default=False)
     timeline_elements = models.ManyToManyField(TimelineElement, blank=True)

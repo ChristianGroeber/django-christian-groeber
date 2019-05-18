@@ -30,6 +30,7 @@ urlpatterns = [
     url('hire-me/', include('hire_me.urls'), name='hire-me'),
     url('blog/', include('blog.urls'), name='blog'),
     url(r'^froala_editor/', include('froala_editor.urls')),
+    path('martor/', include('martor.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
