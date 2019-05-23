@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/tracker.css' %}">
+<a href="create/" class="create-button">Create new project</a>
+<div class="projects">
+    {% for project in projects %}
+    <div class="project">
+    {{ project.title }}
+        <a href="start-working/{{ project.id }}/"><img src="{% static 'img/play.png' %}" height="40"></a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
