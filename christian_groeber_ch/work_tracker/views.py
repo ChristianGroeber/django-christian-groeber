@@ -117,3 +117,17 @@ def start_working(request, project_id):
         event.current_calendar_event = calendar_event
         event.save()
         return redirect('../../')
+
+
+def edit(request, project_id):
+    if str(request.user) == "AnonymousUser":
+        return redirect('../../../')
+    project = Trackable.objects.get(pk=project_id)
+    forms = CreateProject(instance=project)
+    colors = Color.objects.all()
+    if str(request.method) == 'POST':
+        forms = CreateProject(request.POST, instance=project)
+        if forms.is_valid():
+            forms.save()
+            return redirect('../../')
+    return render(request, 'work_tracker/create.html', {'forms': forms, 'colors': colors})

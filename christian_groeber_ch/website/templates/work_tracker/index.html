@@ -7,7 +7,7 @@
     {% for project in projects %}
     <div class="project">
         <div class="project-header" style="background-color: {{ project.color.background_hash_code }}">
-            {{ project.title }}
+            {{ project.title }} <a href="edit/{{ project.id }}/"><img src="{% static 'img/edit.png' %}" height="20"></a>
         </div>
         {% if project.running %}
         <a class="play-pause" href="stop-working/"><img src="{% static 'img/pause.png' %}" height="40"></a>
