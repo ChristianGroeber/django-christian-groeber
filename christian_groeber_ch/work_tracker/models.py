@@ -13,10 +13,19 @@ class Color(models.Model):
         return str(self.color_id)
 
 
+class CalendarEvent(models.Model):
+    summary = models.CharField(max_length=1000)
+    event_id = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.event_id
+
+
 class Trackable(models.Model):
     title = models.CharField(max_length=200)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     running = models.BooleanField(default=False)
+    current_calendar_event = models.ForeignKey(CalendarEvent, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
         return self.title

@@ -3,7 +3,7 @@ import datetime
 import pickle
 import os.path
 from .forms import CreateProject
-from .models import Trackable, Color
+from .models import Trackable, Color, CalendarEvent
 
 import httplib2
 from googleapiclient.discovery import build
@@ -79,13 +79,23 @@ def create_event(name, color_id):
         'end': {'dateTime': str(date_today) + 'T23:59:59' + GMT_OFF},
         'colorId': color_id
     }).execute()
+    a = CalendarEvent(summary=name, event_id=event['id'])
+    a.save()
     print(event)
+    return a
 
 
 def stop_running_event():
-    running = Trackable.objects.get(running=True)
-    running.running = False
-    running.save()
+    running = Trackable.objects.filter(running=True)
+    for event in running:
+        event.running = False
+        event.save()
+        service = build_service()
+        calendar_event = service.events().get(calendarId='swiss8oy.chg@gmail.com', eventId=event.current_calendar_event.event_id).execute()
+        time_now = datetime.datetime.now()
+        time_now_str = time_now.strftime("%Y-%m-%dT%H:%M:%S")
+        calendar_event['end'] = {'dateTime': time_now_str + '+02:00'}
+        updated_event = service.events().update(calendarId='swiss8oy.chg@gmail.com', eventId=calendar_event['id'], body=calendar_event).execute()
 
 
 def stop_working(request):
@@ -102,7 +112,8 @@ def start_working(request, project_id):
     else:
         stop_running_event()
         event = Trackable.objects.get(pk=project_id)
+        calendar_event = create_event(event.title, event.color.color_id)
         event.running = True
+        event.current_calendar_event = calendar_event
         event.save()
-        create_event(event.title, event.color.color_id)
         return redirect('../../')
