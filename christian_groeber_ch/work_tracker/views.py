@@ -30,41 +30,31 @@ def build_service():
 
 
 def update_colors():
-    colors = Color.objects.all()
-    if colors:
-        pass
-    else:
-        orig_colors = build_service().colors().get().execute()
-        for orig_color in orig_colors['event']:
-            if str(orig_color) not in colors:
-                color_dict = orig_colors['event'][orig_color]
-                background = color_dict['background']
-                foreground = color_dict['foreground']
-                a = Color(color_id=orig_color, background_hash_code=background, foreground_hash_code=foreground)
-                a.save()
+    orig_colors = build_service().colors().get().execute()
+    for orig_color in orig_colors['event']:
+        if str(orig_color) not in colors:
+            color_dict = orig_colors['event'][orig_color]
+            background = color_dict['background']
+            foreground = color_dict['foreground']
+            a = Color(color_id=orig_color, background_hash_code=background, foreground_hash_code=foreground)
+            a.save()
 
 
 def index(request):
-    if str(request.user) == "AnonymousUser":
-        return redirect('../')
-    else:
-        update_colors()
-        projects = Trackable.objects.all()
-        return render(request, 'work_tracker/index.html', {'projects': projects})
+    update_colors()
+    projects = Trackable.objects.all()
+    return render(request, 'work_tracker/index.html', {'projects': projects})
 
 
 def new_project(request):
-    if str(request.user) == "AnonymousUser":
-        return redirect('../../')
-    else:
-        colors = Color.objects.all()
-        create_project_form = CreateProject()
-        if request.method == 'POST':
-            create_project_form = CreateProject(request.POST)
-            if create_project_form.is_valid():
-                create_project_form.save()
-                return redirect('../')
-        return render(request, 'work_tracker/create.html', {'forms': create_project_form, 'colors': colors})
+    colors = Color.objects.all()
+    create_project_form = CreateProject()
+    if request.method == 'POST':
+        create_project_form = CreateProject(request.POST)
+        if create_project_form.is_valid():
+            create_project_form.save()
+            return redirect('../')
+    return render(request, 'work_tracker/create.html', {'forms': create_project_form, 'colors': colors})
 
 
 def create_event(name, color_id):
@@ -99,29 +89,21 @@ def stop_running_event():
 
 
 def stop_working(request):
-    if str(request.user) == "AnonymousUser":
-        return redirect('../../../')
-    else:
-        stop_running_event()
-        return redirect('../')
+    stop_running_event()
+    return redirect('../')
 
 
 def start_working(request, project_id):
-    if str(request.user) == "AnonymousUser":
-        return redirect('../../../')
-    else:
-        stop_running_event()
-        event = Trackable.objects.get(pk=project_id)
-        calendar_event = create_event(event.title, event.color.color_id)
-        event.running = True
-        event.current_calendar_event = calendar_event
-        event.save()
-        return redirect('../../')
+    stop_running_event()
+    event = Trackable.objects.get(pk=project_id)
+    calendar_event = create_event(event.title, event.color.color_id)
+    event.running = True
+    event.current_calendar_event = calendar_event
+    event.save()
+    return redirect('../../')
 
 
 def edit(request, project_id):
-    if str(request.user) == "AnonymousUser":
-        return redirect('../../../')
     project = Trackable.objects.get(pk=project_id)
     forms = CreateProject(instance=project)
     colors = Color.objects.all()
@@ -134,8 +116,6 @@ def edit(request, project_id):
 
 
 def delete(request, project_id):
-    if str(request.user) == "AnonymousUser":
-        return redirect('../../../')
     project = Trackable.objects.get(pk=project_id)
     project.delete()
     return redirect('../../')
