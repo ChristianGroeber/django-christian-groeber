@@ -42,7 +42,8 @@ def update_colors():
 
 
 def index(request):
-    update_colors()
+    if not Color.objects.all():
+        update_colors()
     projects = Trackable.objects.all()
     return render(request, 'work_tracker/index.html', {'projects': projects})
 
