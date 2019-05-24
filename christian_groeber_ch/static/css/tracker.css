@@ -21,7 +21,8 @@
 }
 
 .color-block{
-    display: block;
-    height: 30px;
-    width: 30px;
+    display: inline-block;
+    height: 20px;
+    width: 60px;
+    border-radius: 5px;
 }
