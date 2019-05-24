@@ -8,8 +8,12 @@
     {% for project in projects %}
     <div class="project">
     {{ project.title }}
+        {% if project.running %}
+        <a href="stop-working/"><img src="{% static 'img/pause.png' %}" height="40"></a>
+        {% else %}
         <a href="start-working/{{ project.id }}/"><img src="{% static 'img/play.png' %}" height="40"></a>
-        </div>
+        {% endif %}
+    </div>
     {% endfor %}
 </div>
 {% endblock %}

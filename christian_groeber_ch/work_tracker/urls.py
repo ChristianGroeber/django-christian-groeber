@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.index),
     path('create/', views.new_project),
     path('start-working/<project_id>/', views.start_working),
+    path('stop-working/', views.stop_working),
 ]

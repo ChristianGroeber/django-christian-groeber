@@ -82,10 +82,27 @@ def create_event(name, color_id):
     print(event)
 
 
+def stop_running_event():
+    running = Trackable.objects.get(running=True)
+    running.running = False
+    running.save()
+
+
+def stop_working(request):
+    if str(request.user) == "AnonymousUser":
+        return redirect('../../../')
+    else:
+        stop_running_event()
+        return redirect('../')
+
+
 def start_working(request, project_id):
     if str(request.user) == "AnonymousUser":
         return redirect('../../../')
     else:
+        stop_running_event()
         event = Trackable.objects.get(pk=project_id)
+        event.running = True
+        event.save()
         create_event(event.title, event.color.color_id)
         return redirect('../../')

@@ -16,6 +16,7 @@ class Color(models.Model):
 class Trackable(models.Model):
     title = models.CharField(max_length=200)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
+    running = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
