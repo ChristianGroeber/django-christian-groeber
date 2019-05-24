@@ -35,9 +35,9 @@ def update_colors():
         pass
     else:
         orig_colors = build_service().colors().get().execute()
-        for orig_color in orig_colors['calendar']:
+        for orig_color in orig_colors['event']:
             if str(orig_color) not in colors:
-                color_dict = orig_colors['calendar'][orig_color]
+                color_dict = orig_colors['event'][orig_color]
                 background = color_dict['background']
                 foreground = color_dict['foreground']
                 a = Color(color_id=orig_color, background_hash_code=background, foreground_hash_code=foreground)
@@ -76,8 +76,8 @@ def create_event(name, color_id):
     event = service.events().insert(calendarId='swiss8oy.chg@gmail.com', sendNotifications=False, body={
         'summary': name,
         'start': {'dateTime': time_now_str + GMT_OFF},
-        'end':     {'dateTime': str(date_today) + 'T23:59:59' + GMT_OFF},
-        'colorId': color_id,
+        'end': {'dateTime': str(date_today) + 'T23:59:59' + GMT_OFF},
+        'colorId': color_id
     }).execute()
     print(event)
 
