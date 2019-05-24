@@ -4,6 +4,48 @@ body{
     color: white;
 }
 
+*{
+    -webkit-transition: box-shadow 0.5s ease !important;
+}
+
+input[type=text]{
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 0;
+}
+
+input[type=text]:hover{
+    box-shadow: 0 0 20px black;
+}
+
+input[type=text]:focus{
+    border: 0;
+}
+
+select {
+  width: 100%;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+select:hover{
+    box-shadow: 0 0 20px black;
+}
+
+button{
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    margin-bottom: 30px;
+}
+
+button:hover{
+    box-shadow: 0 0 20px black;
+}
+
+
 .project {
     display: block;
     border: 0.5px solid black;

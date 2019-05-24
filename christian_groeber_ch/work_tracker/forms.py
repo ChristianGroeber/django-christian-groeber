@@ -5,4 +5,4 @@ from .models import Trackable
 class CreateProject(ModelForm):
     class Meta:
         model = Trackable
-        exclude = []
+        exclude = ['running', 'current_calendar_event']
