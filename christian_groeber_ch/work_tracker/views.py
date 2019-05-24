@@ -31,6 +31,7 @@ def build_service():
 
 def update_colors():
     orig_colors = build_service().colors().get().execute()
+    colors = Color.objects.all()
     for orig_color in orig_colors['event']:
         if str(orig_color) not in colors:
             color_dict = orig_colors['event'][orig_color]
