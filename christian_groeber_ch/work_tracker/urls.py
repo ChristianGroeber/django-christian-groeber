@@ -8,4 +8,5 @@ urlpatterns = [
     path('start-working/<project_id>/', views.start_working),
     path('stop-working/', views.stop_working),
     path('edit/<project_id>/', views.edit),
+    path('delete/<project_id>/', views.delete)
 ]

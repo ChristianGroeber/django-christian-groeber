@@ -79,18 +79,26 @@ button:hover{
     float: right;
 }
 
-.create-button{
+.button{
     display: block;
     padding: 20px;
-    background-color: #4285F4;
     color: white;
     border-radius: 5px;
+    width: 100%;
 }
 
-.create-button:hover{
+.create-button{
+    background-color: #4285F4;
+}
+
+.button:hover{
     color: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.75);
     text-decoration: none;
+}
+
+.delete-button{
+    background-color: #DB4437;
 }
 
 .color-block{

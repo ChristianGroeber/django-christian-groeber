@@ -17,5 +17,8 @@
             class="color-block"></span><br>
         {% endfor %}
     </div>
+    {% if edit %}
+        <a class="button delete-button" href="../../delete/{{ edit }}/">Delete</a>
+    {% endif %}
 </div>
 {% endblock %}

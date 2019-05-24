@@ -130,4 +130,12 @@ def edit(request, project_id):
         if forms.is_valid():
             forms.save()
             return redirect('../../')
-    return render(request, 'work_tracker/create.html', {'forms': forms, 'colors': colors})
+    return render(request, 'work_tracker/create.html', {'forms': forms, 'colors': colors, 'edit': project_id})
+
+
+def delete(request, project_id):
+    if str(request.user) == "AnonymousUser":
+        return redirect('../../../')
+    project = Trackable.objects.get(pk=project_id)
+    project.delete()
+    return redirect('../../')
