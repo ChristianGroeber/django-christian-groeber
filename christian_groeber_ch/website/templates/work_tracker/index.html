@@ -1,17 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'work_tracker/base.html' %}
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/tracker.css' %}">
 <a href="create/" class="create-button">Create new project</a>
 <div class="projects">
     {% for project in projects %}
     <div class="project">
+        <div class="project-header" style="background-color: {{ project.color.background_hash_code }}">
     {{ project.title }}
+            </div>
         {% if project.running %}
-        <a href="stop-working/"><img src="{% static 'img/pause.png' %}" height="40"></a>
+        <a class="play-pause" href="stop-working/"><img src="{% static 'img/pause.png' %}" height="40"></a>
         {% else %}
-        <a href="start-working/{{ project.id }}/"><img src="{% static 'img/play.png' %}" height="40"></a>
+        <a class="play-pause" href="start-working/{{ project.id }}/"><img src="{% static 'img/play.png' %}" height="40"></a>
         {% endif %}
     </div>
     {% endfor %}
