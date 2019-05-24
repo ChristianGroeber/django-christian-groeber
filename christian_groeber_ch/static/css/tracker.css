@@ -19,3 +19,9 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.75);
     text-decoration: none;
 }
+
+.color-block{
+    display: block;
+    height: 30px;
+    width: 30px;
+}
