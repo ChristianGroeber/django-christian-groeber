@@ -15,6 +15,8 @@ from christian_groeber_ch.settings import BASE_DIR
 
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 CLIENT_SECRET_FILE = os.path.join(BASE_DIR, 'woven-solution-241515-16bb63aa00cc.json')
+# CLIENT_SECRET_FILE = os.path.join(BASE_DIR, 'client_id.json')
+service_account_email = 'worktracker@woven-solution-241515.iam.gserviceaccount.com'
 
 
 def build_service():
@@ -67,7 +69,7 @@ def create_event(name, color_id):
     time_now = datetime.datetime.now()
     time_now_str = time_now.strftime("%Y-%m-%dT%H:%M:%S")
     date_today = datetime.date.today()
-    event = service.events().insert(calendarId='primary', body={
+    event = service.events().insert(calendarId='swiss8oy.chg@gmail.com', sendNotifications=False, body={
         'summary': name,
         'start': {'dateTime': time_now_str + GMT_OFF},
         'end':     {'dateTime': str(date_today) + 'T23:59:59' + GMT_OFF},
