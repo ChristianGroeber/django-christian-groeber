@@ -20,17 +20,7 @@
         {% endfor %}
     </div>
     {% if edit %}
-    <script>
-    $(document).ready(function(){
-        $('.button.delete-button').click(function(){
-            var del = confirm('are you sure?');
-            if (del){
-                window.location.replace("../../delete/{{ edit }}/");
-            }
-       })
-    })
-    </script>
-        <p class="button delete-button">Delete</p>
+        <a href="../../delete/{{ edit }}/" class="button delete-button">Delete</a>
     {% endif %}
 </div>
 {% endblock %}
