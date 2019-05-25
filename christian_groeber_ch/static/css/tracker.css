@@ -4,6 +4,15 @@ body{
     color: white;
 }
 
+a{
+    color: white !important;
+}
+
+
+a:hover{
+    color: white !important;
+}
+
 *{
     -webkit-transition: box-shadow 0.5s ease !important;
 }
