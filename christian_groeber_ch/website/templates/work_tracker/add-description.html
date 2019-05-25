@@ -1,5 +1,11 @@
 {% extends 'work_tracker/base.html' %}
+{% load static %}
 
 {% block content %}
-
+<link rel="stylesheet" href="{% static 'css/tracker.css' %}">
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button create-button" type="submit">Save</button>
+</form>
 {% endblock %}

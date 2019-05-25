@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 import datetime
 import pickle
 import os.path
-from .forms import CreateProject
+from .forms import CreateProject, DescriptionForm
 from .models import Trackable, Color, CalendarEvent
 
 import httplib2
@@ -124,4 +124,10 @@ def delete(request, project_id):
 
 
 def add_description(request, event_id):
-    return render(request, 'work_tracker/add-description.html')
+    event = CalendarEvent.objects.get(pk=event_id)
+    form = DescriptionForm(instance=event)
+    if str(request.method) == 'POST':
+        form = DescriptionForm(request.POST, instance=event)
+        if form.is_valid():
+            event.save()
+    return render(request, 'work_tracker/add-description.html', {'form': form})
