@@ -43,27 +43,37 @@ def update_colors():
 
 def update_running_events():
     now = datetime.datetime.utcnow().isoformat() + 'Z'
-    end = str(datetime.date.today()) + 'T23:59:59' + 'Z'
+    end = str(datetime.date.today()) + 'T' + str(datetime.datetime.now().hour) + ':' + str(datetime.datetime.now().minute + 2) +':59Z'
     events_result = build_service().events().list(
         calendarId='swiss8oy.chg@gmail.com',
         timeMin=now,
         timeMax=end,
-        maxResults=5,
+        maxResults=1,
         singleEvents=True,
         orderBy='startTime'
     ).execute()
     events = events_result.get('items', [])
-    print(events)
     my_events = Trackable.objects.all()
-    for event in my_events:
-        if str(event.color.color_id) == str(events[0]['colorId']):
-            event.running = True
-            event.save()
-            break
     if not events:
         for event in my_events:
             event.running = False
             event.save()
+        return
+    start_time_date = datetime.datetime.strptime(events[0]['start']['dateTime'][:-6], "%Y-%m-%dT%H:%M:%S")
+    now_date = datetime.datetime.now()
+    if start_time_date >= now_date:
+        for event in my_events:
+            event.running = False
+            event.save()
+        return
+    for event in my_events:
+        if str(event.color.color_id) == str(events[0]['colorId']):
+            event.running = True
+            new_calendar_event = CalendarEvent(summary=events[0]['summary'], event_id=events[0]['id'])
+            new_calendar_event.save()
+            event.current_calendar_event = new_calendar_event
+            event.save()
+            break
 
 
 def index(request):
