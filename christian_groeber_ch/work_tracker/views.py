@@ -123,6 +123,24 @@ def delete(request, project_id):
     return redirect('../../')
 
 
+def add_description_to_calendar(event_id, description):
+    event = CalendarEvent.objects.get(pk=event_id)
+    service = build_service()
+    calendar_event = service.events().get(calendarId='swiss8oy.chg@gmail.com',
+                                          eventId=event.event_id).execute()
+    trackables = Trackable.objects.all()
+    title_trackable = ""
+    for trackable in trackables:
+        print(trackable.current_calendar_event.id)
+        if trackable.current_calendar_event.id == int(event_id):
+            title_trackable = trackable.title
+            break
+    calendar_event['summary'] = title_trackable + ' - ' + description
+    updated_event = service.events().update(calendarId='swiss8oy.chg@gmail.com', eventId=calendar_event['id'],
+                                            body=calendar_event).execute()
+    print(updated_event)
+
+
 def add_description(request, event_id):
     event = CalendarEvent.objects.get(pk=event_id)
     form = DescriptionForm(instance=event)
@@ -130,4 +148,6 @@ def add_description(request, event_id):
         form = DescriptionForm(request.POST, instance=event)
         if form.is_valid():
             event.save()
+            add_description_to_calendar(event_id, form.cleaned_data['description'])
+            return redirect('../../')
     return render(request, 'work_tracker/add-description.html', {'form': form})
