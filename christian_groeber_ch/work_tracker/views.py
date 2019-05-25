@@ -121,3 +121,7 @@ def delete(request, project_id):
     project = Trackable.objects.get(pk=project_id)
     project.delete()
     return redirect('../../')
+
+
+def add_description(request, event_id):
+    return render(request, 'work_tracker/add-description.html')

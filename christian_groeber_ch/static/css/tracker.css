@@ -69,6 +69,10 @@ button:hover{
     padding-top: 10px;
 }
 
+.project-body{
+    padding: 5px;
+}
+
 @media (min-width:730px){
     .project{
         width: 50%;

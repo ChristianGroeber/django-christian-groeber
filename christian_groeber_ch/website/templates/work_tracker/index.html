@@ -9,12 +9,15 @@
         <div class="project-header" style="background-color: {{ project.color.background_hash_code }}">
             {{ project.title }} <a href="edit/{{ project.id }}/"><img src="{% static 'img/edit.png' %}" height="20"></a>
         </div>
-        {% if project.running %}
-        <a class="play-pause" href="stop-working/"><img src="{% static 'img/pause.png' %}" height="40"></a>
-        {% else %}
-        <a class="play-pause" href="start-working/{{ project.id }}/"><img src="{% static 'img/play.png' %}"
-                height="40"></a>
-        {% endif %}
+        <div class="project-body">
+            {% if project.running %}
+            <a href="add-description/{{ project.current_calendar_event.id }}">Add a description</a>
+            <a class="play-pause" href="stop-working/"><img src="{% static 'img/pause.png' %}" height="40"></a>
+            {% else %}
+            <a class="play-pause" href="start-working/{{ project.id }}/"><img src="{% static 'img/play.png' %}"
+                    height="40"></a>
+            {% endif %}
+        </div>
     </div>
     {% endfor %}
 </div>

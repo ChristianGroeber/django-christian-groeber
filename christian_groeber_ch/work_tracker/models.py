@@ -15,6 +15,7 @@ class Color(models.Model):
 
 class CalendarEvent(models.Model):
     summary = models.CharField(max_length=1000)
+    description = models.CharField(max_length=1000, blank=True)
     event_id = models.CharField(max_length=200)
 
     def __str__(self):
