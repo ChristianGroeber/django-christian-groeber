@@ -2,7 +2,14 @@
 {% load static %}
 
 {% block content %}
-<a href="create/" class="button create-button">Create new project</a>
+<div class="row">
+    <div class="col-sm-8">
+        <a href="create/" class="button create-button">Create new project</a>
+    </div>
+    <div class="col-sm-2">
+        <a href="."><img src="{% static 'img/reload.png' %}" height="30"></a>
+    </div>
+</div>
 <div class="projects">
     {% for project in projects %}
     <div class="project">

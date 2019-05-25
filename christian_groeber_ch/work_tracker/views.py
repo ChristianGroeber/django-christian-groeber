@@ -41,10 +41,36 @@ def update_colors():
             a.save()
 
 
+def update_running_events():
+    now = datetime.datetime.utcnow().isoformat() + 'Z'
+    end = str(datetime.date.today()) + 'T23:59:59' + 'Z'
+    events_result = build_service().events().list(
+        calendarId='swiss8oy.chg@gmail.com',
+        timeMin=now,
+        timeMax=end,
+        maxResults=5,
+        singleEvents=True,
+        orderBy='startTime'
+    ).execute()
+    events = events_result.get('items', [])
+    print(events)
+    my_events = Trackable.objects.all()
+    for event in my_events:
+        if str(event.color.color_id) == str(events[0]['colorId']):
+            event.running = True
+            event.save()
+            break
+    if not events:
+        for event in my_events:
+            event.running = False
+            event.save()
+
+
 def index(request):
     if not Color.objects.all():
         update_colors()
     projects = Trackable.objects.all()
+    update_running_events()
     return render(request, 'work_tracker/index.html', {'projects': projects})
 
 
