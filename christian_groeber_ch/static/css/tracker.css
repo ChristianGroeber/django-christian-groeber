@@ -108,6 +108,7 @@ button:hover{
     color: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.75);
     text-decoration: none;
+    cursor:pointer;
 }
 
 .delete-button{

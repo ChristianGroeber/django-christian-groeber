@@ -3,6 +3,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/tracker.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <a href="../">back</a>
 <div class="row">
     <div class="col-sm-6">
@@ -19,7 +20,17 @@
         {% endfor %}
     </div>
     {% if edit %}
-        <a class="button delete-button" href="../../delete/{{ edit }}/">Delete</a>
+    <script>
+    $(document).ready(function(){
+        $('.button.delete-button').click(function(){
+            var del = confirm('are you sure?');
+            if (del){
+                window.location.replace("../../delete/{{ edit }}/");
+            }
+       })
+    })
+    </script>
+        <p class="button delete-button">Delete</p>
     {% endif %}
 </div>
 {% endblock %}
