@@ -95,7 +95,7 @@ def new_project(request):
     return render(request, 'work_tracker/create.html', {'forms': create_project_form, 'colors': colors})
 
 
-def create_event(name, color_id, start_time=None, end_time=None):
+def create_event(name, color_id, start_time=None, end_time=None, description=None):
     service = build_service()
     GMT_OFF = '+02:00'
     if not start_time:
@@ -110,7 +110,7 @@ def create_event(name, color_id, start_time=None, end_time=None):
         }).execute()
     else:
         event = service.events().insert(calendarId='swiss8oy.chg@gmail.com', sendNotifications=False, body={
-            'summary': name,
+            'summary': name + description,
             'start': {'dateTime': str(start_time)},
             'end': {'dateTime': str(end_time)},
             'colorId': color_id
@@ -207,6 +207,9 @@ def plan(request, project_id):
             start_time = str(date) + "T" + str(form.cleaned_data['start_time']) + "+02:00"
             end_time = str(date) + "T" + str(form.cleaned_data['end_time']) + "+02:00"
             print(str(start_time), str(end_time))
-            create_event(project.title, str(project.color), start_time=start_time, end_time=end_time)
+            description = form.cleaned_data['description']
+            if description is not '':
+                description = ' - ' + description
+            create_event(project.title, str(project.color), start_time=start_time, end_time=end_time, description=description)
             return redirect('../../')
     return render(request, 'work_tracker/planning.html', {'form': form})
