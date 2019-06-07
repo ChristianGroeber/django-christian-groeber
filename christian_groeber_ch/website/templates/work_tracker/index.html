@@ -20,10 +20,12 @@
             {% if project.running %}
             <a href="add-description/{{ project.current_calendar_event.id }}">Add a description</a>
             <a class="play-pause" href="stop-working/"><img src="{% static 'img/pause.png' %}" height="40"></a>
+            <br>
             {% else %}
             <a class="play-pause" href="start-working/{{ project.id }}/"><img src="{% static 'img/play.png' %}"
                     height="40"></a>
             {% endif %}
+            <a href="plan/{{ project.id }}/">Plan this</a>
         </div>
     </div>
     {% endfor %}

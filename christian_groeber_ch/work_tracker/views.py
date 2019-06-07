@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 import datetime
 import pickle
 import os.path
-from .forms import CreateProject, DescriptionForm
+from .forms import CreateProject, DescriptionForm, PlanningForm
 from .models import Trackable, Color, CalendarEvent
 
 import httplib2
@@ -95,18 +95,26 @@ def new_project(request):
     return render(request, 'work_tracker/create.html', {'forms': create_project_form, 'colors': colors})
 
 
-def create_event(name, color_id):
+def create_event(name, color_id, start_time=None, end_time=None):
     service = build_service()
     GMT_OFF = '+02:00'
-    time_now = datetime.datetime.now()
-    time_now_str = time_now.strftime("%Y-%m-%dT%H:%M:%S")
-    date_today = datetime.date.today()
-    event = service.events().insert(calendarId='swiss8oy.chg@gmail.com', sendNotifications=False, body={
-        'summary': name,
-        'start': {'dateTime': time_now_str + GMT_OFF},
-        'end': {'dateTime': str(date_today) + 'T23:59:59' + GMT_OFF},
-        'colorId': color_id
-    }).execute()
+    if not start_time:
+        time_now = datetime.datetime.now()
+        time_now_str = time_now.strftime("%Y-%m-%dT%H:%M:%S")
+        date_today = datetime.date.today()
+        event = service.events().insert(calendarId='swiss8oy.chg@gmail.com', sendNotifications=False, body={
+            'summary': name,
+            'start': {'dateTime': time_now_str + GMT_OFF},
+            'end': {'dateTime': str(date_today) + 'T23:59:59' + GMT_OFF},
+            'colorId': color_id
+        }).execute()
+    else:
+        event = service.events().insert(calendarId='swiss8oy.chg@gmail.com', sendNotifications=False, body={
+            'summary': name,
+            'start': {'dateTime': str(start_time)},
+            'end': {'dateTime': str(end_time)},
+            'colorId': color_id
+        }).execute()
     a = CalendarEvent(summary=name, event_id=event['id'])
     a.save()
     print(event)
@@ -187,3 +195,18 @@ def add_description(request, event_id):
             add_description_to_calendar(event_id, form.cleaned_data['description'])
             return redirect('../../')
     return render(request, 'work_tracker/add-description.html', {'form': form})
+
+
+def plan(request, project_id):
+    form = PlanningForm()
+    project = Trackable.objects.get(pk=project_id)
+    if str(request.method) == 'POST':
+        form = PlanningForm(request.POST)
+        if form.is_valid():
+            date = form.cleaned_data['date']
+            start_time = str(date) + "T" + str(form.cleaned_data['start_time']) + "+02:00"
+            end_time = str(date) + "T" + str(form.cleaned_data['end_time']) + "+02:00"
+            print(str(start_time), str(end_time))
+            create_event(project.title, str(project.color), start_time=start_time, end_time=end_time)
+            return redirect('../../')
+    return render(request, 'work_tracker/planning.html', {'form': form})
