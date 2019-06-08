@@ -32,6 +32,8 @@ urlpatterns = [
     url('blog/', include('blog.urls'), name='blog'),
     url(r'^froala_editor/', include('froala_editor.urls')),
     path('martor/', include('martor.urls')),
+    url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
+    path('account/profile/', include('website.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

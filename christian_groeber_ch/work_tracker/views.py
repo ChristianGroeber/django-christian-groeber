@@ -213,3 +213,7 @@ def plan(request, project_id):
             create_event(project.title, str(project.color), start_time=start_time, end_time=end_time, description=description)
             return redirect('../../')
     return render(request, 'work_tracker/planning.html', {'form': form})
+
+
+def login(request):
+    return render(request, 'work_tracker/login.html')

@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from christian_groeber_ch.settings import STATICFILES_DIRS
 
 # Create your views here.
@@ -26,3 +26,7 @@ def csr(request):
 
 def muttertag(request):
     return render(request, 'website/muttertag.html')
+
+
+def accounts(request):
+    return redirect('../../work-tracker/')
