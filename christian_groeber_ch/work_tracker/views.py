@@ -4,7 +4,7 @@ import datetime
 import pickle
 import os.path
 from .forms import CreateProject, DescriptionForm, PlanningForm
-from .models import Trackable, Color, CalendarEvent
+from .models import Trackable, Color, CalendarEvent, MyUser
 
 import httplib2
 from googleapiclient.discovery import build
@@ -80,7 +80,14 @@ def update_running_events():
 def index(request):
     if not Color.objects.all():
         update_colors()
-    projects = Trackable.objects.all()
+    current_user = MyUser.objects.filter(name=str(request.user))
+    if len(current_user) == 0:
+        a = MyUser(name=str(request.user))
+        a.save()
+        current_user = a
+    else:
+        current_user = current_user[0]
+    projects = current_user.trackables.all()
     update_running_events()
     return render(request, 'work_tracker/index.html', {'projects': projects})
 
@@ -91,7 +98,11 @@ def new_project(request):
     if request.method == 'POST':
         create_project_form = CreateProject(request.POST)
         if create_project_form.is_valid():
-            create_project_form.save()
+            a = Trackable(title=create_project_form.cleaned_data['title'], color=create_project_form.cleaned_data['color'])
+            a.save()
+            current_user = MyUser.objects.get(name=str(request.user))
+            current_user.trackables.add(a)
+            current_user.save()
             return redirect('../')
     return render(request, 'work_tracker/create.html', {'forms': create_project_form, 'colors': colors})
 

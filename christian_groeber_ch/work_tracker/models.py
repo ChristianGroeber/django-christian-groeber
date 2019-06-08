@@ -30,3 +30,11 @@ class Trackable(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class MyUser(models.Model):
+    name = models.CharField(max_length=200)
+    trackables = models.ManyToManyField(Trackable)
+
+    def __str__(self):
+        return self.name
