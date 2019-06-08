@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 import datetime
 import pickle
@@ -217,3 +218,8 @@ def plan(request, project_id):
 
 def login(request):
     return render(request, 'work_tracker/login.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('../')

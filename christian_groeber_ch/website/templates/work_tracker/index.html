@@ -2,6 +2,9 @@
 {% load static %}
 
 {% block content %}
+{% if user.is_authenticated and backends.associated %}
+<h1>Hello {{ user }}</h1>
+<a href="logout/">Logout</a>
 <div class="row">
     <div class="col-sm-8">
         <a href="create/" class="button create-button">Create new project</a>
@@ -30,4 +33,9 @@
     </div>
     {% endfor %}
 </div>
+{% else %}
+<script>
+    window.location.replace('login/');
+</script>
+{% endif %}
 {% endblock %}
