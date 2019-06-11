@@ -10,12 +10,12 @@ import httplib2
 from googleapiclient.discovery import build
 from oauth2client.service_account import ServiceAccountCredentials
 
-from christian_groeber_ch.settings import BASE_DIR
+from christian_groeber_ch.settings import BASE_DIR, SOCIAL_AUTH_GOOGLE_OAUTH2_KEY, SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
 
 # Create your views here.
 
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-CLIENT_SECRET_FILE = os.path.join(BASE_DIR, 'woven-solution-241515-16bb63aa00cc.json')
+CLIENT_SECRET_FILE = os.path.join(BASE_DIR, 'client_secret_240082627833-thcll2e8hukf2hb2sngvass639er6ho1.apps.googleusercontent.com.json')
 # CLIENT_SECRET_FILE = os.path.join(BASE_DIR, 'client_id.json')
 service_account_email = 'worktracker@woven-solution-241515.iam.gserviceaccount.com'
 
@@ -81,8 +81,10 @@ def index(request):
     if not Color.objects.all():
         update_colors()
     current_user = MyUser.objects.filter(name=str(request.user))
+    if str(request.user) == 'AnonymousUser':
+        return redirect('login/')
     if len(current_user) == 0:
-        a = MyUser(name=str(request.user))
+        a = MyUser(name=str(request.user), email=str(request.user.email))
         a.save()
         current_user = a
     else:
@@ -107,21 +109,22 @@ def new_project(request):
     return render(request, 'work_tracker/create.html', {'forms': create_project_form, 'colors': colors})
 
 
-def create_event(name, color_id, start_time=None, end_time=None, description=None):
+def create_event(request, name, color_id, start_time=None, end_time=None, description=None):
     service = build_service()
     GMT_OFF = '+02:00'
+    current_user = MyUser.objects.get(name=str(request.user))
     if not start_time:
         time_now = datetime.datetime.now()
         time_now_str = time_now.strftime("%Y-%m-%dT%H:%M:%S")
         date_today = datetime.date.today()
-        event = service.events().insert(calendarId='swiss8oy.chg@gmail.com', sendNotifications=False, body={
+        event = service.events().insert(calendarId=current_user.email, sendNotifications=False, body={
             'summary': name,
             'start': {'dateTime': time_now_str + GMT_OFF},
             'end': {'dateTime': str(date_today) + 'T23:59:59' + GMT_OFF},
             'colorId': color_id
         }).execute()
     else:
-        event = service.events().insert(calendarId='swiss8oy.chg@gmail.com', sendNotifications=False, body={
+        event = service.events().insert(calendarId=current_user.email, sendNotifications=False, body={
             'summary': name + description,
             'start': {'dateTime': str(start_time)},
             'end': {'dateTime': str(end_time)},
@@ -154,7 +157,7 @@ def stop_working(request):
 def start_working(request, project_id):
     stop_running_event()
     event = Trackable.objects.get(pk=project_id)
-    calendar_event = create_event(event.title, event.color.color_id)
+    calendar_event = create_event(request, event.title, event.color.color_id)
     event.running = True
     event.current_calendar_event = calendar_event
     event.save()
@@ -222,7 +225,7 @@ def plan(request, project_id):
             description = form.cleaned_data['description']
             if description is not '':
                 description = ' - ' + description
-            create_event(project.title, str(project.color), start_time=start_time, end_time=end_time, description=description)
+            create_event(request, project.title, str(project.color), start_time=start_time, end_time=end_time, description=description)
             return redirect('../../')
     return render(request, 'work_tracker/planning.html', {'form': form})
 

@@ -9,10 +9,12 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+import json
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from oauth2client.service_account import ServiceAccountCredentials
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -102,9 +104,11 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='240082627833-thcll2e8hukf2hb2sngvass639er6ho1.apps.googleusercontent.com'  #Paste CLient Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'fije8d5OmolpjZd7vBzC9v_R' #Paste Secret Key
+with open('Django App-e5ecd365e6cf.json', 'r') as f:
+    datastore = json.load(f)
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = datastore['private_key']
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = datastore['client_id']
 
 
 # Password validation

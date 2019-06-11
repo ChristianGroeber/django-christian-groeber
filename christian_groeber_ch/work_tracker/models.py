@@ -34,6 +34,7 @@ class Trackable(models.Model):
 
 class MyUser(models.Model):
     name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
     trackables = models.ManyToManyField(Trackable)
 
     def __str__(self):
