@@ -17,7 +17,7 @@ class Topic(Model):
 class Post(Model):
     title = CharField(max_length=50)
     description = CharField(max_length=500, blank=True)
-    date_posted = models.DateTimeField(default=timezone.now())
+    date_posted = models.DateTimeField(default=timezone.now)
     main_image = models.ImageField(upload_to='blog', blank=True)
     text = MartorField()
     author = CharField(max_length=50, default='Christian Gröber')
