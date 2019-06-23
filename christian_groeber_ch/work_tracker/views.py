@@ -15,8 +15,8 @@ from christian_groeber_ch.settings import BASE_DIR, SOCIAL_AUTH_GOOGLE_OAUTH2_KE
 # Create your views here.
 
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-CLIENT_SECRET_FILE = os.path.join(BASE_DIR, 'client_secret_240082627833-thcll2e8hukf2hb2sngvass639er6ho1.apps.googleusercontent.com.json')
-# CLIENT_SECRET_FILE = os.path.join(BASE_DIR, 'client_id.json')
+CLIENT_SECRET_FILE = os.path.join(BASE_DIR,
+                                  'Django App-e5ecd365e6cf.json')
 service_account_email = 'worktracker@woven-solution-241515.iam.gserviceaccount.com'
 
 
@@ -44,7 +44,8 @@ def update_colors():
 
 def update_running_events():
     now = datetime.datetime.utcnow().isoformat() + 'Z'
-    end = str(datetime.date.today()) + 'T' + str(datetime.datetime.now().hour) + ':' + str(datetime.datetime.now().minute + 2) +':59Z'
+    end = str(datetime.date.today()) + 'T' + str(datetime.datetime.now().hour) + ':' + str(
+        datetime.datetime.now().minute + 2) + ':59Z'
     events_result = build_service().events().list(
         calendarId='swiss8oy.chg@gmail.com',
         timeMin=now,
@@ -90,7 +91,7 @@ def index(request):
     else:
         current_user = current_user[0]
     projects = current_user.trackables.all()
-    update_running_events()
+    # update_running_events()
     return render(request, 'work_tracker/index.html', {'projects': projects})
 
 
@@ -100,7 +101,8 @@ def new_project(request):
     if request.method == 'POST':
         create_project_form = CreateProject(request.POST)
         if create_project_form.is_valid():
-            a = Trackable(title=create_project_form.cleaned_data['title'], color=create_project_form.cleaned_data['color'])
+            a = Trackable(title=create_project_form.cleaned_data['title'],
+                          color=create_project_form.cleaned_data['color'])
             a.save()
             current_user = MyUser.objects.get(name=str(request.user))
             current_user.trackables.add(a)
@@ -113,18 +115,19 @@ def create_event(request, name, color_id, start_time=None, end_time=None, descri
     service = build_service()
     GMT_OFF = '+02:00'
     current_user = MyUser.objects.get(name=str(request.user))
+    print(color_id)
     if not start_time:
         time_now = datetime.datetime.now()
         time_now_str = time_now.strftime("%Y-%m-%dT%H:%M:%S")
         date_today = datetime.date.today()
-        event = service.events().insert(calendarId=current_user.email, sendNotifications=False, body={
+        event = service.events().insert(calendarId='swiss8oy.chg@gmail.com', body={
             'summary': name,
             'start': {'dateTime': time_now_str + GMT_OFF},
             'end': {'dateTime': str(date_today) + 'T23:59:59' + GMT_OFF},
             'colorId': color_id
         }).execute()
     else:
-        event = service.events().insert(calendarId=current_user.email, sendNotifications=False, body={
+        event = service.events().insert(calendarId='swiss8oy.chg@gmail.com', body={
             'summary': name + description,
             'start': {'dateTime': str(start_time)},
             'end': {'dateTime': str(end_time)},
@@ -142,11 +145,13 @@ def stop_running_event():
         event.running = False
         event.save()
         service = build_service()
-        calendar_event = service.events().get(calendarId='swiss8oy.chg@gmail.com', eventId=event.current_calendar_event.event_id).execute()
+        calendar_event = service.events().get(calendarId='swiss8oy.chg@gmail.com',
+                                              eventId=event.current_calendar_event.event_id).execute()
         time_now = datetime.datetime.now()
         time_now_str = time_now.strftime("%Y-%m-%dT%H:%M:%S")
         calendar_event['end'] = {'dateTime': time_now_str + '+02:00'}
-        updated_event = service.events().update(calendarId='swiss8oy.chg@gmail.com', eventId=calendar_event['id'], body=calendar_event).execute()
+        updated_event = service.events().update(calendarId='swiss8oy.chg@gmail.com', eventId=calendar_event['id'],
+                                                body=calendar_event).execute()
 
 
 def stop_working(request):
@@ -157,7 +162,7 @@ def stop_working(request):
 def start_working(request, project_id):
     stop_running_event()
     event = Trackable.objects.get(pk=project_id)
-    calendar_event = create_event(request, event.title, event.color.color_id)
+    calendar_event = create_event(request, event.title, event.color.background_hash_code)
     event.running = True
     event.current_calendar_event = calendar_event
     event.save()
@@ -225,7 +230,8 @@ def plan(request, project_id):
             description = form.cleaned_data['description']
             if description is not '':
                 description = ' - ' + description
-            create_event(request, project.title, str(project.color), start_time=start_time, end_time=end_time, description=description)
+            create_event(request, project.title, str(project.color), start_time=start_time, end_time=end_time,
+                         description=description)
             return redirect('../../')
     return render(request, 'work_tracker/planning.html', {'form': form})
 

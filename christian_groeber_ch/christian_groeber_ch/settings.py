@@ -104,11 +104,11 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-with open('Django App-e5ecd365e6cf.json', 'r') as f:
+with open('client_secret_240082627833-thcll2e8hukf2hb2sngvass639er6ho1.apps.googleusercontent.com.json', 'r') as f:
     datastore = json.load(f)
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = datastore['private_key']
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = datastore['client_id']
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = datastore['web']['client_secret']
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = datastore['web']['client_id']
 
 
 # Password validation
